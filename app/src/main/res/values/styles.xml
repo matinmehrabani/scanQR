@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="nvBottm">
+        <item name="colorPrimary">#FFEE58</item>
+    </style>
+
 </resources>

@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/frame"
-        >
+    <android.support.design.widget.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_nav"
+        android:background="?android:attr/windowBackground"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu"
+        app:itemTextColor="#F9A825"
+        app:itemIconTint="#3F51B5"
+        app:itemBackground="@color/colorPrimary"
+        android:theme="@style/nvBottm"
+        app:labelVisibilityMode="labeled"
+        />
 
-    </FrameLayout>
 
 </RelativeLayout>
