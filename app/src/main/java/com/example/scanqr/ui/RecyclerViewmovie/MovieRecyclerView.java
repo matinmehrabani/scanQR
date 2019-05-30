@@ -1,7 +1,7 @@
 package com.example.scanqr.ui.RecyclerViewmovie;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,7 +10,6 @@ import com.example.scanqr.R;
 import com.example.scanqr.model.Movie;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MovieRecyclerView extends AppCompatActivity {

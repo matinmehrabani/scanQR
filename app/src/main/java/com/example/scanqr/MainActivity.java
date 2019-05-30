@@ -2,24 +2,18 @@ package com.example.scanqr;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.example.scanqr.ui.CreateQR.CreateQR;
 import com.example.scanqr.ui.RecyclerViewmovie.MovieRecyclerView;
 import com.example.scanqr.ui.Settings.SettingsActivity;
 import com.example.scanqr.ui.scanQR.ScanActivity;
-
 
 import java.lang.reflect.Field;
 
@@ -40,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item_1:
-startActivity(new Intent(MainActivity.this, CreateQR.class));
+                        startActivity(new Intent(MainActivity.this, CreateQR.class));
                         return true;
                     case R.id.item_2:
-startActivity(new Intent(MainActivity.this, ScanActivity.class));
+                        startActivity(new Intent(MainActivity.this, ScanActivity.class));
                         return true;
                     case R.id.item_3:
-startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         return true;
                     case R.id.item_4:
                         startActivity(new Intent(MainActivity.this, MovieRecyclerView.class));

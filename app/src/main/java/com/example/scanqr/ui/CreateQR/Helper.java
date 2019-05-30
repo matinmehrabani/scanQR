@@ -1,7 +1,6 @@
 package com.example.scanqr.ui.CreateQR;
 
 import android.graphics.Bitmap;
-import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;

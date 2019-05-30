@@ -1,7 +1,5 @@
 package com.example.scanqr.model;
 
-import android.widget.ImageView;
-
 public class Settings {
 
     private String title;
