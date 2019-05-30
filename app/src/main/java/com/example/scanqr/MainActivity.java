@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.scanqr.ui.CreateQR.CreateQR;
 import com.example.scanqr.ui.RecyclerViewmovie.MovieRecyclerView;
+import com.example.scanqr.ui.Settings.SettingsActivity;
 import com.example.scanqr.ui.scanQR.ScanActivity;
 
 
@@ -25,6 +26,9 @@ import java.lang.reflect.Field;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
+    //TODO:(matin) remove additional codes
+    //TODO:(matin) change activities to fragments
+    //TODO:(matin) define initUiComponent and initUiListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +46,7 @@ startActivity(new Intent(MainActivity.this, CreateQR.class));
 startActivity(new Intent(MainActivity.this, ScanActivity.class));
                         return true;
                     case R.id.item_3:
-
+startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         return true;
                     case R.id.item_4:
                         startActivity(new Intent(MainActivity.this, MovieRecyclerView.class));
@@ -59,15 +63,13 @@ startActivity(new Intent(MainActivity.this, ScanActivity.class));
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
             Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
-            shiftingMode.setAccessible(true);
             shiftingMode.setBoolean(menuView, false);
-            shiftingMode.setAccessible(false);
-            for (int i = 0; i < menuView.getChildCount(); i++) {
-                BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                item.setShifting(false);
-                // set once again checked value, so view will be updated
-                item.setChecked(item.getItemData().isChecked());
-            }
+//            for (int i = 0; i < menuView.getChildCount(); i++) {
+//                BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+//                //item.setShifting(true);
+//                // set once again checked value, so view will be updated
+//                item.setChecked(item.getItemData().isChecked());
+//            }
         } catch (NoSuchFieldException e) {
             Log.e("BNVHelper", "Unable to get shift mode field", e);
         } catch (IllegalAccessException e) {
