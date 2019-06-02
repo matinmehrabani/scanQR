@@ -1,7 +1,7 @@
 package com.example.scanqr;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
+        bottomNavigationView =  findViewById(R.id.bottom_nav);
         disableShiftMode(bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,new CreateQrFragment()).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
