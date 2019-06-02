@@ -12,17 +12,14 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Settings.SettingsActivity"></activity>
         <activity android:name=".ui.Movie2.Movie2Activity" />
         <activity android:name=".ui.Movie1.Movie1Activity" />
-        <activity android:name=".ui.RecyclerViewmovie.MovieRecyclerView" />
-        <activity android:name=".ui.scanQR.ScanActivity" />
-        <activity android:name=".ui.CreateQR.CreateQR" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

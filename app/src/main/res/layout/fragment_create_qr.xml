@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.CreateQR.CreateQrFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+
+       <android.support.v7.widget.Toolbar
+           android:id="@+id/my_toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="?attr/actionBarSize"
+           style="@style/HeaderBar"
+           android:elevation="4dp"
+           />
+
+
+       <EditText
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/edit"
+           android:ems="10"
+           android:inputType="text"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="70dp"
+           android:hint="Text"
+           />
+
+
+       <ImageView
+           android:layout_width="300dp"
+           android:layout_height="300dp"
+           android:layout_centerInParent="true"
+           android:id="@+id/image"
+           >
+
+       </ImageView>
+
+
+
+
+
+
+
+   </RelativeLayout>
+</FrameLayout>

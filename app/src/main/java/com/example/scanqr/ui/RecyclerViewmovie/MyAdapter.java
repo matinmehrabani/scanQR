@@ -3,6 +3,7 @@ package com.example.scanqr.ui.RecyclerViewmovie;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.scanqr.MainActivity;
 import com.example.scanqr.R;
 import com.example.scanqr.model.Movie;
 import com.example.scanqr.ui.Movie1.Movie1Activity;
@@ -20,11 +22,11 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 List<Movie> list;
-Activity activity;
+Fragment recyclerViewFragment;
 
-    public MyAdapter(List<Movie> list, Activity activity) {
+    public MyAdapter(List<Movie> list,Fragment recyclerViewFragment) {
         this.list = list;
-        this.activity = activity;
+this.recyclerViewFragment=recyclerViewFragment;
     }
 
     @NonNull
@@ -57,10 +59,10 @@ myViewHolder.imageView.setImageResource(movie.getImage());
 switch (list.get(getAdapterPosition()).getImage()){
 
     case  R.drawable.images :
-        Intent intent=new Intent(activity, Movie1Activity.class);
-        activity.startActivity(intent);break;
-    case R.drawable.index :   Intent intent2=new Intent(activity, Movie2Activity.class);
-        activity.startActivity(intent2);break;
+        Intent intent=new Intent(recyclerViewFragment.getActivity(), Movie1Activity.class);
+        recyclerViewFragment.startActivity(intent);break;
+    case R.drawable.index :   Intent intent2=new Intent(recyclerViewFragment.getActivity(), Movie2Activity.class);
+        recyclerViewFragment.startActivity(intent2);break;
 }
                 }
             });

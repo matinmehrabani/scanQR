@@ -2,18 +2,27 @@ package com.example.scanqr;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.scanqr.ui.CreateQR.CreateQR;
-import com.example.scanqr.ui.RecyclerViewmovie.MovieRecyclerView;
-import com.example.scanqr.ui.Settings.SettingsActivity;
-import com.example.scanqr.ui.scanQR.ScanActivity;
+import com.example.scanqr.ui.CreateQR.CreateQrFragment;
+
+import com.example.scanqr.ui.RecyclerViewmovie.RecyclerViewFragment;
+
+import com.example.scanqr.ui.Settings.SettingsFragment;
+
+import com.example.scanqr.ui.scanQR.ScanFragment;
+
+
 
 import java.lang.reflect.Field;
 
@@ -23,28 +32,49 @@ public class MainActivity extends AppCompatActivity {
     //TODO:(matin) remove additional codes
     //TODO:(matin) change activities to fragments
     //TODO:(matin) define initUiComponent and initUiListener
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
         disableShiftMode(bottomNavigationView);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,new CreateQrFragment()).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item_1:
-                        startActivity(new Intent(MainActivity.this, CreateQR.class));
-                        return true;
+                        CreateQrFragment createQrFragment=new CreateQrFragment();
+                        FragmentManager fm=getSupportFragmentManager();
+                        FragmentTransaction ft=fm.beginTransaction();
+                        ft.replace(R.id.frameLayout,createQrFragment );
+                        ft.commit();
+                        break;
                     case R.id.item_2:
-                        startActivity(new Intent(MainActivity.this, ScanActivity.class));
-                        return true;
+
+                        ScanFragment scanFragment=new ScanFragment();
+                        FragmentManager fm2=getSupportFragmentManager();
+                        FragmentTransaction ft2=fm2.beginTransaction();
+                        ft2.replace(R.id.frameLayout,scanFragment);
+                        ft2.commit();
+                        break;
+
                     case R.id.item_3:
-                        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                        return true;
+                        SettingsFragment settingsFragment=new SettingsFragment();
+                        FragmentManager fm3=getSupportFragmentManager();
+                        FragmentTransaction ft3=fm3.beginTransaction();
+                        ft3.replace(R.id.frameLayout,settingsFragment );
+                        ft3.commit();
+                        break;
                     case R.id.item_4:
-                        startActivity(new Intent(MainActivity.this, MovieRecyclerView.class));
-                        return true;
+                        RecyclerViewFragment recyclerViewFragment=new RecyclerViewFragment();
+                        FragmentManager fm4=getSupportFragmentManager();
+                        FragmentTransaction ft4=fm4.beginTransaction();
+                        ft4.replace(R.id.frameLayout,recyclerViewFragment );
+                        ft4.commit();
+                        break;
                 }
                 return false;
             }
@@ -58,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
             shiftingMode.setBoolean(menuView, false);
-//            for (int i = 0; i < menuView.getChildCount(); i++) {
-//                BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-//                //item.setShifting(true);
-//                // set once again checked value, so view will be updated
-//                item.setChecked(item.getItemData().isChecked());
-//            }
+            for (int i = 0; i < menuView.getChildCount(); i++) {
+               BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+                item.setShifting(false);
+                // set once again checked value, so view will be updated
+               item.setChecked(item.getItemData().isChecked());
+            }
         } catch (NoSuchFieldException e) {
             Log.e("BNVHelper", "Unable to get shift mode field", e);
         } catch (IllegalAccessException e) {

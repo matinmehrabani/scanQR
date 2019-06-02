@@ -1,13 +1,18 @@
 package com.example.scanqr.ui.Settings;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.scanqr.MainActivity;
 import com.example.scanqr.R;
 import com.example.scanqr.model.Settings;
 
@@ -16,9 +21,10 @@ import java.util.List;
 import static com.example.scanqr.model.Settings.ONE_TYPE;
 import static com.example.scanqr.model.Settings.Two_TYPE;
 
-public class MyAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class MyAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<Settings> list;
-
+    android.support.v7.app.AlertDialog alertDialog1;
+    CharSequence[] values = {" First Item "," Second Item "," Third Item "};
     public MyAdapter2(List<Settings> list) {
         this.list = list;
     }
@@ -58,13 +64,17 @@ switch (settings1.getType()){
     case ONE_TYPE:
         ((oneViewHolder)viewHolder).text.setText(settings1.getTitle());
         ((oneViewHolder)viewHolder).imag1.setImageResource(settings1.getImage());
-        ((oneViewHolder)viewHolder).text4.setText(settings1.getName());break;
+        ((oneViewHolder)viewHolder).text4.setText(settings1.getName());
+
+        break;
 
     case Two_TYPE:
         ((twoViewHolder)viewHolder).text.setText(settings1.getTitle());
         ((twoViewHolder)viewHolder).image2.setImageResource(settings1.getImage());break;
-
 }
+
+
+
     }
 
     @Override
@@ -76,11 +86,13 @@ switch (settings1.getType()){
         TextView text;
         ImageView imag1;
         TextView text4;
-        public oneViewHolder(@NonNull View itemView) {
+        CardView cardview;
+        public oneViewHolder(@NonNull final View itemView) {
             super(itemView);
             text=itemView.findViewById(R.id.text);
             imag1=itemView.findViewById(R.id.image2);
             text4=itemView.findViewById(R.id.text4);
+            cardview=itemView.findViewById(R.id.card1);
         }
     }
 
@@ -94,5 +106,8 @@ switch (settings1.getType()){
             image2=itemView.findViewById(R.id.image);
         }
     }
+
+
+
 
 }

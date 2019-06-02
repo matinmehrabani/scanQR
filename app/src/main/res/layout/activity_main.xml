@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="670dp"
+        android:id="@+id/frameLayout"
+
+        >
+
+    </FrameLayout>
+
+
+
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,17 +26,11 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/menu"
         app:itemTextColor="#F9A825"
-        app:itemIconTint="#3F51B5"
+        app:itemIconTint="#F9A825"
         app:itemBackground="@color/colorPrimary"
-        android:theme="@style/nvBottm"
         app:labelVisibilityMode="labeled"
+        android:theme="@style/Widget.BottomNavigationView"
         />
-<Button
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="100dp"
 
-    />
 
 </RelativeLayout>
