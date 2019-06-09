@@ -21,11 +21,10 @@ import java.util.List;
  */
 public class RecyclerViewFragment extends Fragment {
 
-    List<Movie> list;
-    RecyclerView recyclerView;
-    Integer[] image;
-    MyAdapter myAdapter;
-    Movie movie;
+    List<Movie> mList;
+    RecyclerView mRecyclerView;
+    Integer[] mImage;
+    MyAdapter mMyAdapter;
 
 
     @Override
@@ -34,28 +33,28 @@ public class RecyclerViewFragment extends Fragment {
         // Inflate the layout for this fragment
            View view= inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerView);
-        list = new ArrayList<>();
-        image = new Integer[]{
+        mRecyclerView = view.findViewById(R.id.recyclerView);
+        mList = new ArrayList<>();
+        mImage = new Integer[]{
                 R.drawable.images, R.drawable.index
         };
-        list.add(new Movie( R.drawable.images));
-        list.add(new Movie(R.drawable.index));
-        list.add(new Movie( R.drawable.images));
-        list.add(new Movie(R.drawable.index));
-        list.add(new Movie( R.drawable.images));
-        list.add(new Movie(R.drawable.index));
+        mList.add(new Movie( R.drawable.images));
+        mList.add(new Movie(R.drawable.index));
+        mList.add(new Movie( R.drawable.images));
+        mList.add(new Movie(R.drawable.index));
+        mList.add(new Movie( R.drawable.images));
+        mList.add(new Movie(R.drawable.index));
 //for(int i=0 ;i<image.length;i++){
 //  Movie movie=new Movie();
 //  movie.setImage(image);
 //   //list.add();
 //}
-        Log.i("Movie", "onCreate: "+list.toString());
+        Log.i("Movie", "onCreate: "+mList.toString());
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        myAdapter=new MyAdapter(list,this);
-        recyclerView.setAdapter(myAdapter);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mMyAdapter=new MyAdapter(mList,this);
+        mRecyclerView.setAdapter(mMyAdapter);
 
            return view;
 

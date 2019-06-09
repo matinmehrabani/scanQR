@@ -3,9 +3,7 @@ package com.example.scanqr.ui.CreateQR;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.BaseTransientBottomBar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -25,22 +23,22 @@ import com.google.zxing.WriterException;
  */
 public class CreateQrFragment extends Fragment {
 
-    ImageView imageView;
-    EditText editText;
-    Helper helper;
-Toolbar toolbar;
+    ImageView mImageView;
+    EditText mEditText;
+    Helper mHelper;
+Toolbar mToolbar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
       View view = inflater.inflate(R.layout.fragment_create_qr, container, false);
-        imageView = view.findViewById(R.id.image);
-        editText = view.findViewById(R.id.edit);
-        toolbar=view.findViewById(R.id.my_toolbar);
-        helper = new Helper();
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        mImageView = view.findViewById(R.id.image);
+        mEditText = view.findViewById(R.id.edit);
+        mToolbar=view.findViewById(R.id.my_toolbar);
+        mHelper = new Helper();
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        editText.addTextChangedListener(new TextWatcher() {
+        mEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -54,7 +52,7 @@ Toolbar toolbar;
             @Override
             public void afterTextChanged(Editable s) {
 
-                Bitmap(editText.getText().toString());
+                Bitmap(mEditText.getText().toString());
             }
         });
 
@@ -66,11 +64,11 @@ Toolbar toolbar;
 
         Bitmap bitmap = null;
         try {
-            bitmap = helper.textToImage(text, 500, 500);
+            bitmap = mHelper.textToImage(text, 500, 500);
         } catch (WriterException e) {
             e.printStackTrace();
         }
-        imageView.setImageBitmap(bitmap);
+        mImageView.setImageBitmap(bitmap);
 
     }
 

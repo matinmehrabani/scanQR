@@ -9,16 +9,17 @@ import android.widget.FrameLayout;
 import com.example.scanqr.R;
 
 public class Movie1Activity extends AppCompatActivity {
-FrameLayout frameLayout;
+    FrameLayout mFrameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie1);
-frameLayout=findViewById(R.id.frame);
-Movie1Fragment movie1Fragment=new Movie1Fragment();
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.frame,movie1Fragment);
+        mFrameLayout = findViewById(R.id.frame);
+        Movie1Fragment movie1Fragment = new Movie1Fragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frame, movie1Fragment);
         ft.commit();
     }
 }

@@ -2,17 +2,18 @@ package com.example.scanqr.model;
 
 public class Movie {
 
-   int Image;
+  private int mImage;
 
     public Movie(int image) {
-        Image = image;
+        mImage = image;
     }
 
     public int getImage() {
-        return Image;
+        return mImage;
     }
 
     public void setImage(int image) {
-        Image = image;
+        mImage = image;
     }
+
 }

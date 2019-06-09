@@ -10,12 +10,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="670dp"
-        android:id="@+id/frameLayout"
-
-        >
+        android:id="@+id/frameLayout">
 
     </FrameLayout>
-
 
 
     <android.support.design.widget.BottomNavigationView
@@ -25,12 +22,10 @@
         android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
         app:menu="@menu/menu"
-        app:itemTextColor="#F9A825"
-        app:itemIconTint="#F9A825"
-        app:itemBackground="@color/colorPrimary"
+        app:itemTextColor="@drawable/navigation"
+        app:itemIconTint="@drawable/navigation"
         app:labelVisibilityMode="labeled"
         android:theme="@style/Widget.BottomNavigationView"
         />
-
 
 </RelativeLayout>

@@ -1,11 +1,14 @@
 package com.example.scanqr.ui.Settings;
 
-import android.support.v7.app.AlertDialog;
+import com.example.scanqr.model.Settings;
+
+import java.util.List;
 
 public interface settings {
 
     interface ui{
 
-        public void alert();
+        void alert(List<Settings> list);
+void change();
     }
 }

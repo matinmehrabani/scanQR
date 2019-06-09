@@ -1,26 +1,18 @@
 package com.example.scanqr.ui.scanQR;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.scanqr.MainActivity;
 import com.example.scanqr.R;
 import com.google.zxing.Result;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-
-import static android.support.constraint.Constraints.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +29,7 @@ public class ScanFragment extends Fragment implements ZXingScannerView.ResultHan
         View view = inflater.inflate(R.layout.fragment_scan, container, false);
 
         mTextView=view.findViewById(R.id.textScan);
-        mScannerView = (ZXingScannerView) view.findViewById(R.id.zx);
+        mScannerView = view.findViewById(R.id.zx);
 
         mScannerView.setAspectTolerance(0.5f);
 

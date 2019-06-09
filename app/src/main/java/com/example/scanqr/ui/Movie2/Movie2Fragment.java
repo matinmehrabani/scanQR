@@ -19,9 +19,21 @@ import com.example.scanqr.R;
  */
 public class Movie2Fragment extends Fragment {
 
-    private int position = 0;
-    private MediaController mediaController;
+    private int mPosition = 0;
+    private MediaController mMediaController;
     VideoView videoView;
+
+
+
+//    public static Movie2Fragment newInstance(String name){
+//        Movie2Fragment movie2Fragment=new Movie2Fragment();
+//
+//        Bundle bundle=new Bundle();
+//        bundle.putString("name",name);
+//        movie2Fragment.setArguments(bundle);
+//        return movie2Fragment;
+//    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,18 +41,19 @@ public class Movie2Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_movie2, container, false);
 
+
         videoView = view.findViewById(R.id.videoView2);
 
         // Set the media controller buttons
-        if (mediaController == null) {
-            mediaController = new MediaController(getActivity());
+        if (mMediaController == null) {
+            mMediaController = new MediaController(getActivity());
 
             // Set the videoView that acts as the anchor for the MediaController.
-            mediaController.setAnchorView(videoView);
+            mMediaController.setAnchorView(videoView);
 
 
             // Set MediaController for VideoView
-            videoView.setMediaController(mediaController);
+            videoView.setMediaController(mMediaController);
         }
 
 
@@ -64,8 +77,8 @@ public class Movie2Fragment extends Fragment {
             public void onPrepared(MediaPlayer mediaPlayer) {
 
 
-                videoView.seekTo(position);
-                if (position == 0) {
+                videoView.seekTo(mPosition);
+                if (mPosition == 0) {
                     videoView.start();
                 }
 
@@ -75,7 +88,7 @@ public class Movie2Fragment extends Fragment {
                     public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
 
                         // Re-Set the videoView that acts as the anchor for the MediaController
-                        mediaController.setAnchorView(videoView);
+                        mMediaController.setAnchorView(videoView);
                     }
                 });
             }
