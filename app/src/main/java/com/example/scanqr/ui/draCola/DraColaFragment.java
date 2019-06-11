@@ -1,4 +1,4 @@
-package com.example.scanqr.ui.Movie1;
+package com.example.scanqr.ui.draCola;
 
 
 import android.media.MediaPlayer;
@@ -17,34 +17,48 @@ import com.example.scanqr.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Movie1Fragment extends Fragment {
+public class DraColaFragment extends Fragment {
+
     private int mPosition = 0;
     private MediaController mMediaController;
-    VideoView mVideoView;
+   private VideoView mVideoView;
+
+
+
+//    public static DraColaFragment newInstance(String name){
+//        DraColaFragment movie2Fragment=new DraColaFragment();
+//
+//        Bundle bundle=new Bundle();
+//        bundle.putString("name",name);
+//        movie2Fragment.setArguments(bundle);
+//        return movie2Fragment;
+//    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-       View view=  inflater.inflate(R.layout.fragment_movie1, container, false);
 
-        mVideoView = view.findViewById(R.id.videoView);
+        View view= inflater.inflate(R.layout.fragment_movie2, container, false);
 
-        // Set the media controller buttons
+        mVideoView= view.findViewById(R.id.videoView2);
+
+
         if (mMediaController == null) {
             mMediaController = new MediaController(getActivity());
 
-            // Set the videoView that acts as the anchor for the MediaController.
+
             mMediaController.setAnchorView(mVideoView);
 
 
-            // Set MediaController for VideoView
+
             mVideoView.setMediaController(mMediaController);
         }
 
 
         try {
-            // ID of video file.
-            int id = this.getRawResIdByName("big_buck_bunny");
+
+            int id = this.getRawResIdByName("md");
             mVideoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName()
                     + "/" + id));
 
@@ -56,8 +70,8 @@ public class Movie1Fragment extends Fragment {
         mVideoView.requestFocus();
 
 
-        // When the video file ready for playback.
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             public void onPrepared(MediaPlayer mediaPlayer) {
 
@@ -67,12 +81,12 @@ public class Movie1Fragment extends Fragment {
                     mVideoView.start();
                 }
 
-                // When video Screen change size.
+
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
 
-                        // Re-Set the videoView that acts as the anchor for the MediaController
+
                         mMediaController.setAnchorView(mVideoView);
                     }
                 });
@@ -80,27 +94,23 @@ public class Movie1Fragment extends Fragment {
         });
 
 
-
-
-
-       return view;
+        return view;
     }
     public int getRawResIdByName(String resName) {
         String pkgName = this.getActivity().getPackageName();
-        // Return 0 if not found.
+
         int resID = this.getResources().getIdentifier(resName, "raw", pkgName);
         Log.i("AndroidVideoView", "Res Name: " + resName + "==> Res ID = " + resID);
         return resID;
     }
 
 
-    // When you change direction of phone, this method will be called.
-// It store the state of video (Current position)
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
-        // Store current position.
+
         savedInstanceState.putInt("CurrentPosition", mVideoView.getCurrentPosition());
         mVideoView.pause();
     }

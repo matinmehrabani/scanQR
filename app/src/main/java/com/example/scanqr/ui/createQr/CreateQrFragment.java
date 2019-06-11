@@ -1,4 +1,4 @@
-package com.example.scanqr.ui.CreateQR;
+package com.example.scanqr.ui.createQr;
 
 
 import android.graphics.Bitmap;
@@ -23,10 +23,10 @@ import com.google.zxing.WriterException;
  */
 public class CreateQrFragment extends Fragment {
 
-    ImageView mImageView;
-    EditText mEditText;
-    Helper mHelper;
-Toolbar mToolbar;
+   private ImageView mImageView;
+  private   EditText mEditText;
+   private Helper mHelper;
+ private   Toolbar mToolbar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

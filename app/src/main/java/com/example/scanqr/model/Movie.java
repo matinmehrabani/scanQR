@@ -12,8 +12,4 @@ public class Movie {
         return mImage;
     }
 
-    public void setImage(int image) {
-        mImage = image;
-    }
-
 }

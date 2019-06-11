@@ -1,10 +1,10 @@
-package com.example.scanqr.ui.Settings;
+package com.example.scanqr.ui.setting;
 
 import com.example.scanqr.model.Settings;
 
 import java.util.List;
 
-public interface settings {
+public interface SettingInterface {
 
     interface ui{
 
