@@ -8,6 +8,18 @@
     tools:context=".ui.scanQr.ScanFragment">
 
 
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/Toolbar_scan"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        style="@style/HeaderBar"
+        android:elevation="4dp"
+        />
+
+
+
     <me.dm7.barcodescanner.zxing.ZXingScannerView
         android:layout_width="300dp"
         android:layout_height="300dp"
@@ -26,7 +38,7 @@
         android:id="@+id/textScan"
         android:textSize="16dp"
         android:gravity="end"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="120dp"
      android:layout_gravity="center_horizontal"
 
         />

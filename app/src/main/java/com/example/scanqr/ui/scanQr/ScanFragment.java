@@ -3,6 +3,8 @@ package com.example.scanqr.ui.scanQr;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ public class ScanFragment extends Fragment implements ZXingScannerView.ResultHan
 
    private TextView mTextView;
     private ZXingScannerView mScannerView;
-
+private Toolbar mToolbar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,9 +31,11 @@ public class ScanFragment extends Fragment implements ZXingScannerView.ResultHan
 
         mTextView=view.findViewById(R.id.textScan);
         mScannerView = view.findViewById(R.id.zx);
-
+mToolbar=view.findViewById(R.id.Toolbar_scan);
         mScannerView.setAspectTolerance(0.5f);
-
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("scan");
         return view;
     }
     @Override
