@@ -18,11 +18,12 @@ import static com.example.scanqr.model.Settings.ONE_TYPE;
 import static com.example.scanqr.model.Settings.Two_TYPE;
 
 public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-  private  List<Settings> mList;
-   private SettingInterface.ui mShowAndChange;
-    public SettingAdapter(List<Settings> list , SettingInterface.ui view) {
+    private List<Settings> mList;
+    private SettingInterface.ui mShowAndChange;
+
+    public SettingAdapter(List<Settings> list, SettingInterface.ui view) {
         mList = list;
-        mShowAndChange=view;
+        mShowAndChange = view;
     }
 
     @Override
@@ -78,10 +79,10 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class clockViewHolder extends RecyclerView.ViewHolder {
-        TextView mText;
-        ImageView mImage;
-        TextView mTextClock;
-        CardView mCardView;
+        private TextView mText;
+        private ImageView mImage;
+        private TextView mTextClock;
+        private CardView mCardView;
 
         public clockViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -89,23 +90,26 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             mImage = itemView.findViewById(R.id.image2);
             mTextClock = itemView.findViewById(R.id.text4);
             mCardView = itemView.findViewById(R.id.card1);
-mCardView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        switch (mList.get(getAdapterPosition()).getTitle()){
-            case "بازه زمانی قفل صفحه": mShowAndChange.alert(mList);break;
-            case "روش احراز هویت": mShowAndChange.change();
+            mCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (mList.get(getAdapterPosition()).getTitle()) {
+                        case "بازه زمانی قفل صفحه":
+                            mShowAndChange.alert(mList);
+                            break;
+                        case "روش احراز هویت":
+                            mShowAndChange.change();
 
-        }
-    }
-});
+                    }
+                }
+            });
         }
     }
 
 
     class callAndHomeViewHolder extends RecyclerView.ViewHolder {
-        TextView mText;
-        ImageView mImage;
+        private TextView mText;
+        private ImageView mImage;
 
         public callAndHomeViewHolder(@NonNull View itemView) {
             super(itemView);
