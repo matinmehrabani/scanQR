@@ -1,10 +1,7 @@
 package com.example.scanqr;
 
 import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -15,15 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.scanqr.ui.CreateQR.CreateQrFragment;
-import com.example.scanqr.ui.RecyclerViewmovie.RecyclerViewFragment;
-import com.example.scanqr.ui.Settings.SettingsFragment;
-import com.example.scanqr.ui.scanQR.ScanFragment;
+import com.example.scanqr.ui.createQr.CreateQrFragment;
+import com.example.scanqr.ui.recyclerViewMovie.RecyclerViewMovieFragment;
+import com.example.scanqr.ui.setting.SettingFragment;
+import com.example.scanqr.ui.scanQr.ScanFragment;
 
 import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+    BottomNavigationView mBottomNavigationView;
 
     //TODO:(matin) remove additional codes
     //TODO:(matin) change activities to fragments
@@ -33,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView = findViewById(R.id.bottom_nav);
-       disableShiftMode(bottomNavigationView);
+        mBottomNavigationView = findViewById(R.id.bottom_nav);
+       disableShiftMode(mBottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new CreateQrFragment()).commit();
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint({"ResourceAsColor", "ResourceType"})
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -59,21 +56,21 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.item_3:
-                        SettingsFragment settingsFragment = new SettingsFragment();
+                        SettingFragment settingsFragment = new SettingFragment();
                         FragmentManager fm3 = getSupportFragmentManager();
                         FragmentTransaction ft3 = fm3.beginTransaction();
                         ft3.replace(R.id.frameLayout, settingsFragment);
                         ft3.commit();
                         break;
                     case R.id.item_4:
-                        RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+                        RecyclerViewMovieFragment recyclerViewFragment = new RecyclerViewMovieFragment();
                         FragmentManager fm4 = getSupportFragmentManager();
                         FragmentTransaction ft4 = fm4.beginTransaction();
                         ft4.replace(R.id.frameLayout, recyclerViewFragment);
                         ft4.commit();
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }
@@ -88,11 +85,7 @@ public class MainActivity extends AppCompatActivity {
             shiftingMode.setAccessible(false);
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                //noinspection RestrictedApi
                 item.setShifting(false);
-             //   item.setShiftingMode(false);
-                // set once again checked value, so view will be updated
-                //noinspection RestrictedApi
                 item.setChecked(item.getItemData().isChecked());
             }
         } catch (NoSuchFieldException e) {

@@ -1,4 +1,4 @@
-package com.example.scanqr.ui.CreateQR;
+package com.example.scanqr.ui.createQr;
 
 import android.graphics.Bitmap;
 

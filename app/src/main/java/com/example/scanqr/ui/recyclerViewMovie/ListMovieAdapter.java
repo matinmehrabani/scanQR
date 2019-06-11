@@ -1,10 +1,9 @@
-package com.example.scanqr.ui.RecyclerViewmovie;
+package com.example.scanqr.ui.recyclerViewMovie;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +11,19 @@ import android.widget.ImageView;
 
 import com.example.scanqr.R;
 import com.example.scanqr.model.Movie;
-import com.example.scanqr.ui.Movie1.Movie1Activity;
-import com.example.scanqr.ui.Movie2.Movie2Activity;
+import com.example.scanqr.ui.taKhtGaz.TaKhtGazActivity;
+import com.example.scanqr.ui.draCola.DraColaActivity;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyViewHolder> {
 
-    List<Movie> mList;
-    Fragment mRecyclerViewFragment;
+  private   List<Movie> mList;
+  private   Fragment mRecyclerViewFragment;
 
-    public MyAdapter(List<Movie> list, Fragment recyclerViewFragment) {
-        this.mList = list;
-        this.mRecyclerViewFragment = recyclerViewFragment;
+    public ListMovieAdapter(List<Movie> list, Fragment recyclerViewFragment) {
+        mList = list;
+        mRecyclerViewFragment = recyclerViewFragment;
     }
 
     @NonNull
@@ -36,7 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         Movie movie = mList.get(i);
-        myViewHolder.imageView.setImageResource(movie.getImage());
+        myViewHolder.mImageView.setImageResource(movie.getImage());
     }
 
     @Override
@@ -45,24 +44,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView mImageView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
-            imageView.setOnClickListener(new View.OnClickListener() {
+            mImageView = itemView.findViewById(R.id.imageView);
+            mImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Movie id = mList.get(getPosition());
-                    Log.i("id", "onClick: " + id.toString());
                     switch (mList.get(getAdapterPosition()).getImage()) {
 
                         case R.drawable.images:
-                            Intent intent = new Intent(mRecyclerViewFragment.getActivity(), Movie1Activity.class);
+                            Intent intent = new Intent(mRecyclerViewFragment.getActivity(), TaKhtGazActivity.class);
                             mRecyclerViewFragment.startActivity(intent);
                             break;
                         case R.drawable.index:
-                            Intent intent2 = new Intent(mRecyclerViewFragment.getActivity(), Movie2Activity.class);
+                            Intent intent2 = new Intent(mRecyclerViewFragment.getActivity(), DraColaActivity.class);
                             mRecyclerViewFragment.startActivity(intent2);
                             break;
                     }

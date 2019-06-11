@@ -1,9 +1,8 @@
-package com.example.scanqr.ui.scanQR;
+package com.example.scanqr.ui.scanQr;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +51,6 @@ public class ScanFragment extends Fragment implements ZXingScannerView.ResultHan
     public void handleResult(Result rawResult) {
 
         mTextView.setText(rawResult.getText());
-        Log.v("djierue", rawResult.getBarcodeFormat().toString());
-
 
         mScannerView.resumeCameraPreview(this);
     }
