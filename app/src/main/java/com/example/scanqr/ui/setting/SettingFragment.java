@@ -4,8 +4,10 @@ package com.example.scanqr.ui.setting;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
    private RecyclerView mRecyclerView;
    private SettingAdapter mSettingAdapter;
    private List<Settings> mArrayList;
-
+private Toolbar mToolbar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,11 +39,13 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
 
         dataSet();
         mRecyclerView = view.findViewById(R.id.RecyclerView);
+        mToolbar=view.findViewById(R.id.Toolbar_setting);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mSettingAdapter = new SettingAdapter(mArrayList, SettingFragment.this);
         mRecyclerView.setAdapter(mSettingAdapter);
-
-
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("setting");
         return view;
 
     }

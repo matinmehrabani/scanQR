@@ -107,7 +107,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-    class callAndHomeViewHolder extends RecyclerView.ViewHolder {
+ static class callAndHomeViewHolder extends RecyclerView.ViewHolder {
         private TextView mText;
         private ImageView mImage;
 
