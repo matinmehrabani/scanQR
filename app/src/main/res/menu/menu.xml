@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:title="Create QR"
         android:id="@+id/item_1"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_create_black_24dp" />
 
     <item
         android:title="Scan QR"
         android:id="@+id/item_2"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_settings_overscan_black_24dp" />
 
     <item
         android:title="Settings"
         android:id="@+id/item_3"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_settings_black_24dp" />
 
     <item
         android:title="Movie"
         android:id="@+id/item_4"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_local_movies_black_24dp"
         />
 

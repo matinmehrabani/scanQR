@@ -9,14 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.scanqr.R;
 import com.example.scanqr.model.Movie;
-import com.example.scanqr.ui.draCola.DraColaFragment;
+import com.example.scanqr.ui.movie.MovieFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,55 +23,70 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecyclerViewMovieFragment extends Fragment implements Interface.view {
+public class RecyclerViewMovieFragment extends Fragment implements ListMovieInterface.view {
 
-   private List<Movie> mList;
-   private RecyclerView mRecyclerView;
-   private Integer[] mImage;
-   private ListMovieAdapter mListMovieAdapter;
-private Toolbar mToolbar;
-    View view;
+    private List<Movie> mList;
+    private RecyclerView mRecyclerView;
+    private ListMovieAdapter mListMovieAdapter;
+    private Toolbar mToolbar;
+    private View mRoot;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-           view= inflater.inflate(R.layout.fragment_recycler_view, container, false);
-mToolbar=view.findViewById(R.id.Toolbar_recycler);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("movie");
-        mRecyclerView = view.findViewById(R.id.recyclerView);
-        mList = new ArrayList<>();
-        mImage = new Integer[]{
-                R.drawable.images, R.drawable.index
-        };
-        mList.add(new Movie( R.drawable.images));
-        mList.add(new Movie(R.drawable.index));
-        mList.add(new Movie( R.drawable.images));
-        mList.add(new Movie(R.drawable.index));
-        mList.add(new Movie( R.drawable.images));
-        mList.add(new Movie(R.drawable.index));
+        mRoot = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        init();
+        setToolBar();
+        dataSet();
+        recyclerView();
 
-        Log.i("Movie", "onCreate: "+mList.toString());
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mListMovieAdapter=new ListMovieAdapter(mList,RecyclerViewMovieFragment.this);
-        mRecyclerView.setAdapter(mListMovieAdapter);
-
-           return view;
+        return mRoot;
 
 
     }
 
+    private void dataSet() {
+        mList = new ArrayList<>();
+
+        mList.add(new Movie(R.drawable.images));
+        mList.add(new Movie(R.drawable.index));
+        mList.add(new Movie(R.drawable.images));
+        mList.add(new Movie(R.drawable.index));
+        mList.add(new Movie(R.drawable.images));
+        mList.add(new Movie(R.drawable.index));
+
+    }
+
+    private void recyclerView() {
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mListMovieAdapter = new ListMovieAdapter(mList, RecyclerViewMovieFragment.this);
+        mRecyclerView.setAdapter(mListMovieAdapter);
+
+    }
+
+    private void setToolBar() {
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("movie");
+
+    }
 
     @Override
     public void replace(int id) {
-        DraColaFragment draColaFragment=DraColaFragment.newInstance(id);
+        MovieFragment draColaFragment = MovieFragment.newInstance(id);
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout, draColaFragment);
         ft.commit();
+    }
+
+    @Override
+    public void init() {
+        mToolbar = mRoot.findViewById(R.id.Toolbar_recycler);
+        mRecyclerView = mRoot.findViewById(R.id.recyclerView);
     }
 }

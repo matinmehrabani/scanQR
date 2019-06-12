@@ -1,7 +1,6 @@
 package com.example.scanqr.ui.recyclerViewMovie;
 
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +14,12 @@ import java.util.List;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyViewHolder> {
 
-  private   List<Movie> mList;
-   private Interface.view mReplace;
-    public ListMovieAdapter(List<Movie> list,Interface.view view) {
+    private List<Movie> mList;
+    private ListMovieInterface.view mReplace;
+
+    public ListMovieAdapter(List<Movie> list, ListMovieInterface.view view) {
         mList = list;
-mReplace=view;
+        mReplace = view;
     }
 
     @NonNull
@@ -40,7 +40,7 @@ mReplace=view;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-      private   ImageView mImageView;
+        private ImageView mImageView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -51,11 +51,12 @@ mReplace=view;
                     switch (mList.get(getAdapterPosition()).getImage()) {
 
                         case R.drawable.images:
-mReplace.replace(1);break;
+                            mReplace.replace(1);
+                            break;
 
                         case R.drawable.index:
 
-mReplace.replace(2);
+                            mReplace.replace(2);
                     }
                 }
             });

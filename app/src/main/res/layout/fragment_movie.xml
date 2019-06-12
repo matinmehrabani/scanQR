@@ -3,9 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.draCola.DraColaFragment">
+    tools:context=".ui.movie.MovieFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/Toolbar_movie"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        style="@style/HeaderBar"
+        android:elevation="4dp"
+        />
+
+
+
+
     <VideoView
         android:id="@+id/videoView2"
         android:layout_width="match_parent"

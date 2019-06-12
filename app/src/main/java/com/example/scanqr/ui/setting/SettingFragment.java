@@ -27,33 +27,30 @@ import java.util.List;
  */
 public class SettingFragment extends Fragment implements SettingInterface.ui {
 
-   private RecyclerView mRecyclerView;
-   private SettingAdapter mSettingAdapter;
-   private List<Setting> mArrayList;
-private Toolbar mToolbar;
+    private RecyclerView mRecyclerView;
+    private SettingAdapter mSettingAdapter;
+    private List<Setting> mArrayList;
+    private Toolbar mToolbar;
+    private View mRoot;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        mRoot = inflater.inflate(R.layout.fragment_settings, container, false);
 
         dataSet();
-        mRecyclerView = view.findViewById(R.id.RecyclerView);
-        mToolbar=view.findViewById(R.id.Toolbar_setting);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mSettingAdapter = new SettingAdapter(mArrayList, SettingFragment.this);
-        mRecyclerView.setAdapter(mSettingAdapter);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("setting");
-        return view;
+        init();
+        recyclerView();
+        toolBar();
+        return mRoot;
 
     }
 
     private void dataSet() {
 
         mArrayList = new ArrayList<>();
-        mArrayList.add(new Setting("بازه زمانی قفل صفحه", Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp,"60ثانیه"));
+        mArrayList.add(new Setting("بازه زمانی قفل صفحه", Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp, "60ثانیه"));
         mArrayList.add(new Setting("روش احراز هویت", Setting.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, "الگو"));
         mArrayList.add(new Setting("راهنمای برنامه", Setting.Two_TYPE, R.drawable.ic_home_black_24dp, null));
         mArrayList.add(new Setting("پشتیبانی بانک ها", Setting.Two_TYPE, R.drawable.ic_call_black_24dp, null));
@@ -66,23 +63,41 @@ private Toolbar mToolbar;
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.radio_button);
-        List<String> stringList=new ArrayList<>();
+        List<String> stringList = new ArrayList<>();
 
-        stringList.add("ثانیه" + (40));
-        stringList.add("ثانیه" + (50));
-        stringList.add("ثانیه" + (30));
-        stringList.add("ثانیه" + (35));
+        stringList.add((40) + "ثانیه");
+        stringList.add((50) + "ثانیه");
+        stringList.add((30) + "ثانیه");
+        stringList.add((35) + "ثانیه");
 
-        RadioGroup radioGroup =  dialog.findViewById(R.id.radio_group);
+        RadioGroup radioGroup = dialog.findViewById(R.id.radio_group);
 
-        for(int i=0;i<stringList.size();i++){
-            RadioButton radioButton=new RadioButton(getContext());
+        for (int i = 0; i < stringList.size(); i++) {
+            RadioButton radioButton = new RadioButton(getContext());
             radioButton.setText(stringList.get(i));
             radioGroup.addView(radioButton);
         }
 
         dialog.show();
+        initListen(radioGroup);
 
+
+    }
+
+    @Override
+    public void change() {
+        mArrayList.get(1).setName("password");
+        mSettingAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void init() {
+        mRecyclerView = mRoot.findViewById(R.id.RecyclerView);
+        mToolbar = mRoot.findViewById(R.id.Toolbar_setting);
+    }
+
+    @Override
+    public void initListen(RadioGroup radioGroup) {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
@@ -91,21 +106,26 @@ private Toolbar mToolbar;
                 for (int x = 0; x < childCount; x++) {
                     RadioButton radioButton = (RadioButton) group.getChildAt(x);
                     if (radioButton.getId() == checkedId) {
-
-                        Toast.makeText(getContext(), radioButton.getText().toString(), Toast.LENGTH_SHORT).show();
-      mArrayList.get(0).setName(radioButton.getText().toString());
+                        mArrayList.get(0).setName(radioButton.getText().toString());
                         mSettingAdapter.notifyDataSetChanged();
                     }
                 }
             }
         });
-
     }
 
     @Override
-    public void change() {
-        mArrayList.get(1).setName("password");
-        mSettingAdapter.notifyDataSetChanged();
+    public void recyclerView() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mSettingAdapter = new SettingAdapter(mArrayList, SettingFragment.this);
+        mRecyclerView.setAdapter(mSettingAdapter);
+    }
+
+    @Override
+    public void toolBar() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("setting");
     }
 
 }

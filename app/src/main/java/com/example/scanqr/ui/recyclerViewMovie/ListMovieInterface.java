@@ -1,8 +1,10 @@
 package com.example.scanqr.ui.recyclerViewMovie;
 
-public interface Interface {
+public interface ListMovieInterface {
 
-    interface view{
+    interface view {
         void replace(int id);
+
+        void init();
     }
 }

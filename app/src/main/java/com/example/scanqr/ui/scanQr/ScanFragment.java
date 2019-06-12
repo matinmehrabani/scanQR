@@ -18,26 +18,23 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScanFragment extends Fragment implements ZXingScannerView.ResultHandler{
+public class ScanFragment extends Fragment implements ZXingScannerView.ResultHandler, ScanInterface.view {
 
-   private TextView mTextView;
+    private TextView mTextView;
     private ZXingScannerView mScannerView;
-private Toolbar mToolbar;
+    private Toolbar mToolbar;
+    private View mRoot;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_scan, container, false);
-
-        mTextView=view.findViewById(R.id.textScan);
-        mScannerView = view.findViewById(R.id.zx);
-mToolbar=view.findViewById(R.id.Toolbar_scan);
-        mScannerView.setAspectTolerance(0.5f);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("scan");
-        return view;
+        mRoot = inflater.inflate(R.layout.fragment_scan, container, false);
+        init();
+        toolBar();
+        return mRoot;
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -57,6 +54,21 @@ mToolbar=view.findViewById(R.id.Toolbar_scan);
         mTextView.setText(rawResult.getText());
 
         mScannerView.resumeCameraPreview(this);
+    }
+
+    @Override
+    public void init() {
+        mTextView = mRoot.findViewById(R.id.textScan);
+        mScannerView = mRoot.findViewById(R.id.zx);
+        mToolbar = mRoot.findViewById(R.id.Toolbar_scan);
+        mScannerView.setAspectTolerance(0.5f);
+    }
+
+    @Override
+    public void toolBar() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("scan");
     }
 }
 
