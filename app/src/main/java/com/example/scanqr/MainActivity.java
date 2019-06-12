@@ -14,13 +14,13 @@ import android.view.MenuItem;
 
 import com.example.scanqr.ui.createQr.CreateQrFragment;
 import com.example.scanqr.ui.recyclerViewMovie.RecyclerViewMovieFragment;
-import com.example.scanqr.ui.setting.SettingFragment;
 import com.example.scanqr.ui.scanQr.ScanFragment;
+import com.example.scanqr.ui.setting.SettingFragment;
 
 import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView mBottomNavigationView;
+  private   BottomNavigationView mBottomNavigationView;
 
     //TODO:(matin) remove additional codes
     //TODO:(matin) change activities to fragments

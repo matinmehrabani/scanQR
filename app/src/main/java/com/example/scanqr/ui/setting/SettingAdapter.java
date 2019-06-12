@@ -10,25 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.scanqr.R;
-import com.example.scanqr.model.Settings;
+import com.example.scanqr.model.Setting;
 
 import java.util.List;
 
-import static com.example.scanqr.model.Settings.ONE_TYPE;
-import static com.example.scanqr.model.Settings.Two_TYPE;
+import static com.example.scanqr.model.Setting.ONE_TYPE;
+import static com.example.scanqr.model.Setting.Two_TYPE;
 
 public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Settings> mList;
-    private SettingInterface.ui mShowAndChange;
+    private static List<Setting> mList;
+    private static SettingInterface.ui mShowAndChange;
 
-    public SettingAdapter(List<Settings> list, SettingInterface.ui view) {
+    public SettingAdapter(List<Setting> list, SettingInterface.ui view) {
         mList = list;
         mShowAndChange = view;
     }
 
     @Override
     public int getItemViewType(int position) {
-        Settings settings = mList.get(position);
+        Setting settings = mList.get(position);
         if (settings != null) {
             return settings.getType();
         }
@@ -55,7 +55,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        Settings settings1 = mList.get(i);
+        Setting settings1 = mList.get(i);
         switch (settings1.getType()) {
             case ONE_TYPE:
                 ((clockViewHolder) viewHolder).mText.setText(settings1.getTitle());
@@ -78,7 +78,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mList.size();
     }
 
-    class clockViewHolder extends RecyclerView.ViewHolder {
+   static class clockViewHolder extends RecyclerView.ViewHolder {
         private TextView mText;
         private ImageView mImage;
         private TextView mTextClock;

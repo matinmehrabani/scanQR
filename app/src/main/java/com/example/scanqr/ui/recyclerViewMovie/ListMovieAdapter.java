@@ -1,6 +1,5 @@
 package com.example.scanqr.ui.recyclerViewMovie;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -11,19 +10,16 @@ import android.widget.ImageView;
 
 import com.example.scanqr.R;
 import com.example.scanqr.model.Movie;
-import com.example.scanqr.ui.taKhtGaz.TaKhtGazActivity;
-import com.example.scanqr.ui.draCola.DraColaActivity;
 
 import java.util.List;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyViewHolder> {
 
   private   List<Movie> mList;
-  private   Fragment mRecyclerViewFragment;
-
-    public ListMovieAdapter(List<Movie> list, Fragment recyclerViewFragment) {
+   private Interface.view mReplace;
+    public ListMovieAdapter(List<Movie> list,Interface.view view) {
         mList = list;
-        mRecyclerViewFragment = recyclerViewFragment;
+mReplace=view;
     }
 
     @NonNull
@@ -55,13 +51,11 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyVi
                     switch (mList.get(getAdapterPosition()).getImage()) {
 
                         case R.drawable.images:
-                            Intent intent = new Intent(mRecyclerViewFragment.getActivity(), TaKhtGazActivity.class);
-                            mRecyclerViewFragment.startActivity(intent);
-                            break;
+mReplace.replace(1);break;
+
                         case R.drawable.index:
-                            Intent intent2 = new Intent(mRecyclerViewFragment.getActivity(), DraColaActivity.class);
-                            mRecyclerViewFragment.startActivity(intent2);
-                            break;
+
+mReplace.replace(2);
                     }
                 }
             });
