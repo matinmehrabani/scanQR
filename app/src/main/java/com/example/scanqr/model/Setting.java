@@ -1,6 +1,6 @@
 package com.example.scanqr.model;
 
-public class Settings {
+public class Setting {
 
     private String mTitle;
     private int mType;
@@ -9,7 +9,7 @@ public class Settings {
     public static final int ONE_TYPE = 1;
     public static final int Two_TYPE = 2;
 
-    public Settings(String title, int type, int image, String name) {
+    public Setting(String title, int type, int image, String name) {
         this.mTitle = title;
         this.mType = type;
         this.mImage = image;

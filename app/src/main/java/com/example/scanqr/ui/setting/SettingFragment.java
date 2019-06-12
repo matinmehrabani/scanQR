@@ -17,7 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.scanqr.R;
-import com.example.scanqr.model.Settings;
+import com.example.scanqr.model.Setting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
 
    private RecyclerView mRecyclerView;
    private SettingAdapter mSettingAdapter;
-   private List<Settings> mArrayList;
+   private List<Setting> mArrayList;
 private Toolbar mToolbar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,15 +53,15 @@ private Toolbar mToolbar;
     private void dataSet() {
 
         mArrayList = new ArrayList<>();
-        mArrayList.add(new Settings("بازه زمانی قفل صفحه", Settings.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp,"60ثانیه"));
-        mArrayList.add(new Settings("روش احراز هویت", Settings.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, "الگو"));
-        mArrayList.add(new Settings("راهنمای برنامه", Settings.Two_TYPE, R.drawable.ic_home_black_24dp, null));
-        mArrayList.add(new Settings("پشتیبانی بانک ها", Settings.Two_TYPE, R.drawable.ic_call_black_24dp, null));
+        mArrayList.add(new Setting("بازه زمانی قفل صفحه", Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp,"60ثانیه"));
+        mArrayList.add(new Setting("روش احراز هویت", Setting.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, "الگو"));
+        mArrayList.add(new Setting("راهنمای برنامه", Setting.Two_TYPE, R.drawable.ic_home_black_24dp, null));
+        mArrayList.add(new Setting("پشتیبانی بانک ها", Setting.Two_TYPE, R.drawable.ic_call_black_24dp, null));
 
     }
 
     @Override
-    public void alert(List<Settings> list) {
+    public void alert(List<Setting> list) {
 
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
