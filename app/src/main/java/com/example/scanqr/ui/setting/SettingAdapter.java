@@ -78,7 +78,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mList.size();
     }
 
-   static class clockViewHolder extends RecyclerView.ViewHolder {
+    static class clockViewHolder extends RecyclerView.ViewHolder {
         private TextView mText;
         private ImageView mImage;
         private TextView mTextClock;
@@ -107,7 +107,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
- static class callAndHomeViewHolder extends RecyclerView.ViewHolder {
+    static class callAndHomeViewHolder extends RecyclerView.ViewHolder {
         private TextView mText;
         private ImageView mImage;
 

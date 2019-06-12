@@ -1,15 +1,21 @@
-package com.example.scanqr.ui.draCola;
+package com.example.scanqr.ui.movie;
 
 
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.scanqr.R;
@@ -17,19 +23,20 @@ import com.example.scanqr.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DraColaFragment extends Fragment {
+public class MovieFragment extends Fragment implements MovieInterface.view {
 
     private int mPosition = 0;
     private MediaController mMediaController;
-   private VideoView mVideoView;
-  private   View mRoot;
-   private String mMovie;
+    private VideoView mVideoView;
+    private View mRoot;
+    private String mMovie;
+private Toolbar mToolbar;
+MovieFragment movieFragment;
+    public static MovieFragment newInstance(int id) {
+        MovieFragment movie2Fragment = new MovieFragment();
 
-    public static DraColaFragment newInstance(int id){
-        DraColaFragment movie2Fragment=new DraColaFragment();
-
-        Bundle bundle=new Bundle();
-        bundle.putInt("name",id);
+        Bundle bundle = new Bundle();
+        bundle.putInt("name", id);
         movie2Fragment.setArguments(bundle);
         return movie2Fragment;
     }
@@ -39,10 +46,10 @@ public class DraColaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-         mRoot= inflater.inflate(R.layout.fragment_movie2, container, false);
+        mRoot = inflater.inflate(R.layout.fragment_movie, container, false);
 
-        mVideoView= mRoot.findViewById(R.id.videoView2);
-
+        init();
+toolBar();
 
         if (mMediaController == null) {
             mMediaController = new MediaController(getActivity());
@@ -51,16 +58,18 @@ public class DraColaFragment extends Fragment {
             mMediaController.setAnchorView(mVideoView);
 
 
-
             mVideoView.setMediaController(mMediaController);
         }
 
 
         try {
-         switch (getArguments().getInt("name")){
-             case 1:mMovie="md";break;
-             case 2:mMovie="big_buck_bunny";
-         }
+            switch (getArguments().getInt("name")) {
+                case 1:
+                    mMovie = "md";
+                    break;
+                case 2:
+                    mMovie = "big_buck_bunny";
+            }
             int id = this.getRawResIdByName(mMovie);
             mVideoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName()
                     + "/" + id));
@@ -73,8 +82,7 @@ public class DraColaFragment extends Fragment {
         mVideoView.requestFocus();
 
 
-
-         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             public void onPrepared(MediaPlayer mediaPlayer) {
 
@@ -96,8 +104,10 @@ public class DraColaFragment extends Fragment {
             }
         });
 
+        setHasOptionsMenu(true);
         return mRoot;
     }
+
     public int getRawResIdByName(String resName) {
         String packageName = this.getActivity().getPackageName();
 
@@ -105,7 +115,6 @@ public class DraColaFragment extends Fragment {
         Log.i("AndroidVideoView", "Res Name: " + resName + "==> Res ID = " + resID);
         return resID;
     }
-
 
 
     @Override
@@ -117,4 +126,25 @@ public class DraColaFragment extends Fragment {
         mVideoView.pause();
     }
 
+    @Override
+    public void init() {
+        mVideoView = mRoot.findViewById(R.id.videoView2);
+        mToolbar=mRoot.findViewById(R.id.Toolbar_movie);
+    }
+    public void toolBar(){
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("movie");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 }

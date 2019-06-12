@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -19,8 +21,8 @@ import com.example.scanqr.ui.setting.SettingFragment;
 
 import java.lang.reflect.Field;
 
-public class MainActivity extends AppCompatActivity {
-  private   BottomNavigationView mBottomNavigationView;
+public class MainActivity extends AppCompatActivity implements MainInterface.view {
+    private BottomNavigationView mBottomNavigationView;
 
     //TODO:(matin) remove additional codes
     //TODO:(matin) change activities to fragments
@@ -30,9 +32,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();
+        initListen();
+    }
+
+
+    @Override
+    public void init() {
         mBottomNavigationView = findViewById(R.id.bottom_nav);
-       disableShiftMode(mBottomNavigationView);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new CreateQrFragment()).commit();
+    }
+
+    @Override
+    public void initListen() {
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint({"ResourceAsColor", "ResourceType"})
             @Override
@@ -40,34 +53,21 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.item_1:
                         CreateQrFragment createQrFragment = new CreateQrFragment();
-                        FragmentManager fm = getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        ft.replace(R.id.frameLayout, createQrFragment);
-                        ft.commit();
-
+                        replace(createQrFragment);
                         break;
                     case R.id.item_2:
 
                         ScanFragment scanFragment = new ScanFragment();
-                        FragmentManager fm2 = getSupportFragmentManager();
-                        FragmentTransaction ft2 = fm2.beginTransaction();
-                        ft2.replace(R.id.frameLayout, scanFragment);
-                        ft2.commit();
+                       replace(scanFragment);
                         break;
 
                     case R.id.item_3:
                         SettingFragment settingsFragment = new SettingFragment();
-                        FragmentManager fm3 = getSupportFragmentManager();
-                        FragmentTransaction ft3 = fm3.beginTransaction();
-                        ft3.replace(R.id.frameLayout, settingsFragment);
-                        ft3.commit();
+                       replace(settingsFragment);
                         break;
                     case R.id.item_4:
                         RecyclerViewMovieFragment recyclerViewFragment = new RecyclerViewMovieFragment();
-                        FragmentManager fm4 = getSupportFragmentManager();
-                        FragmentTransaction ft4 = fm4.beginTransaction();
-                        ft4.replace(R.id.frameLayout, recyclerViewFragment);
-                        ft4.commit();
+                        replace(recyclerViewFragment);
                         break;
                 }
                 return true;
@@ -75,23 +75,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-        @SuppressLint("RestrictedApi")
-        public static void disableShiftMode(BottomNavigationView view) {
-        BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
-        try {
-            Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
-            shiftingMode.setAccessible(true);
-            shiftingMode.setBoolean(menuView, false);
-            shiftingMode.setAccessible(false);
-            for (int i = 0; i < menuView.getChildCount(); i++) {
-                BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                item.setShifting(false);
-                item.setChecked(item.getItemData().isChecked());
-            }
-        } catch (NoSuchFieldException e) {
-            Log.e("BNVHelper", "Unable to get shift mode field", e);
-        } catch (IllegalAccessException e) {
-            Log.e("BNVHelper", "Unable to change value of shift mode", e);
-        }
+    @Override
+    public void replace(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
     }
 }
