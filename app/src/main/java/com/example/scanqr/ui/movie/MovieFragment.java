@@ -30,8 +30,9 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
     private VideoView mVideoView;
     private View mRoot;
     private String mMovie;
-private Toolbar mToolbar;
-MovieFragment movieFragment;
+    private Toolbar mToolbar;
+    MovieFragment movieFragment;
+
     public static MovieFragment newInstance(int id) {
         MovieFragment movie2Fragment = new MovieFragment();
 
@@ -49,7 +50,7 @@ MovieFragment movieFragment;
         mRoot = inflater.inflate(R.layout.fragment_movie, container, false);
 
         init();
-toolBar();
+        toolBar();
 
         if (mMediaController == null) {
             mMediaController = new MediaController(getActivity());
@@ -129,9 +130,10 @@ toolBar();
     @Override
     public void init() {
         mVideoView = mRoot.findViewById(R.id.videoView2);
-        mToolbar=mRoot.findViewById(R.id.Toolbar_movie);
+        mToolbar = mRoot.findViewById(R.id.Toolbar_movie);
     }
-    public void toolBar(){
+
+    public void toolBar() {
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -140,11 +142,19 @@ toolBar();
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
 
-            getActivity().getSupportFragmentManager().popBackStack();
+            FragmentManager fm = getFragmentManager(); // or 'getSupportFragmentManager();'
+            int count = fm.getBackStackEntryCount();
+            for (int i = 0; i < count; ++i) {
+                fm.popBackStack();
+            }
+
         }
         return super.onOptionsItemSelected(item);
+    }
 
     }
-}
+
+
+

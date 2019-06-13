@@ -81,6 +81,7 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout, draColaFragment);
+        ft.addToBackStack(null);
         ft.commit();
     }
 

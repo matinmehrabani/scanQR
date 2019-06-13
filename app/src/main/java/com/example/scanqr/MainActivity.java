@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface.vie
                     case R.id.item_2:
 
                         ScanFragment scanFragment = new ScanFragment();
-                       replace(scanFragment);
+                        replace(scanFragment);
                         break;
 
                     case R.id.item_3:
                         SettingFragment settingsFragment = new SettingFragment();
-                       replace(settingsFragment);
+                        replace(settingsFragment);
                         break;
                     case R.id.item_4:
                         RecyclerViewMovieFragment recyclerViewFragment = new RecyclerViewMovieFragment();

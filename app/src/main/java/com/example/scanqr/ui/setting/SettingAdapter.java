@@ -95,7 +95,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onClick(View v) {
                     switch (mList.get(getAdapterPosition()).getTitle()) {
                         case "بازه زمانی قفل صفحه":
-                            mShowAndChange.alert(mList);
+                            mShowAndChange.alertDialog();
                             break;
                         case "روش احراز هویت":
                             mShowAndChange.change();
