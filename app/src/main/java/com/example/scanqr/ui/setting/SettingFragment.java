@@ -2,16 +2,22 @@ package com.example.scanqr.ui.setting;
 
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -32,6 +38,9 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     private List<Setting> mArrayList;
     private Toolbar mToolbar;
     private View mRoot;
+    private AlertDialog mAlertDialog;
+    private CharSequence[] mValues = {" 70 ثانیه ", " 50 ثانیه", " 40 ثانیه "};
+    private int mId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,35 +67,18 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     }
 
     @Override
-    public void alert(List<Setting> list) {
+    public void change() {
+        switch (mArrayList.get(1).getName()) {
 
-        final Dialog dialog = new Dialog(getContext());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.radio_button);
-        List<String> stringList = new ArrayList<>();
+            case "الگو":
+                mArrayList.get(1).setName("password");
+                break;
 
-        stringList.add((40) + "ثانیه");
-        stringList.add((50) + "ثانیه");
-        stringList.add((30) + "ثانیه");
-        stringList.add((35) + "ثانیه");
-
-        RadioGroup radioGroup = dialog.findViewById(R.id.radio_group);
-
-        for (int i = 0; i < stringList.size(); i++) {
-            RadioButton radioButton = new RadioButton(getContext());
-            radioButton.setText(stringList.get(i));
-            radioGroup.addView(radioButton);
+            case "password":
+                mArrayList.get(1).setName("الگو");
+                break;
         }
 
-        dialog.show();
-        initListen(radioGroup);
-
-
-    }
-
-    @Override
-    public void change() {
-        mArrayList.get(1).setName("password");
         mSettingAdapter.notifyDataSetChanged();
     }
 
@@ -97,19 +89,27 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     }
 
     @Override
-    public void initListen(RadioGroup radioGroup) {
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    public void initListen(AlertDialog.Builder builder) {
+        builder.setSingleChoiceItems(mValues, -1, new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int childCount = group.getChildCount();
-                for (int x = 0; x < childCount; x++) {
-                    RadioButton radioButton = (RadioButton) group.getChildAt(x);
-                    if (radioButton.getId() == checkedId) {
-                        mArrayList.get(0).setName(radioButton.getText().toString());
-                        mSettingAdapter.notifyDataSetChanged();
-                    }
+            public void onClick(DialogInterface dialog, int item) {
+
+                switch (item) {
+                    case 0:
+                        mId = 0;
+
+                        break;
+                    case 1:
+                        mId = 1;
+
+                        break;
+                    case 2:
+
+                        mId = 2;
+
+                        break;
                 }
+
             }
         });
     }
@@ -128,4 +128,43 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("setting");
     }
 
+    @Override
+    public void alertDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setTitle("You want to change ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (mId) {
+                    case 0:
+                        mArrayList.get(0).setName("70 ثانیه");
+                        mSettingAdapter.notifyDataSetChanged();
+                        break;
+                    case 1:
+                        mArrayList.get(0).setName("50 ثانیه");
+                        mSettingAdapter.notifyDataSetChanged();
+                        break;
+                    case 2:
+                        mArrayList.get(0).setName("40 ثانیه");
+                        mSettingAdapter.notifyDataSetChanged();
+                }
+
+
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        initListen(builder);
+        mAlertDialog = builder.create();
+        mAlertDialog.show();
+
+    }
 }
+
+
