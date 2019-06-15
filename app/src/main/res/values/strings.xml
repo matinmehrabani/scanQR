@@ -25,6 +25,8 @@
 
     <string name="time40">40 ثانیه</string>
 
+    <string name="time60">60 ثانیه</string>
+
     <string name="setting">setting</string>
 
     <string name="youWantChange">You want to change ?</string>
@@ -40,4 +42,5 @@
     <string name="scan">scan</string>
 
     <string name="drakola">drakola</string>
+
 </resources>

@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements MainInterface.vie
 
     @Override
     public void init() {
-        mBottomNavigationView = findViewById(R.id.bottom_nav);
+        mBottomNavigationView = findViewById(R.id.bottomNavigationView_main_selectItem);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new CreateQrFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout_main_replaceFragments, new CreateQrFragment()).commit();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface.vie
     public void replace(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.replace(R.id.frameLayout_main_replaceFragments, fragment);
         fragmentTransaction.commit();
     }
 }
