@@ -1,4 +1,4 @@
-package com.example.scanqr.ui.recyclerViewMovie;
+package com.example.scanqr.ui.listMovie;
 
 
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.scanqr.R;
 import com.example.scanqr.model.Movie;
-import com.example.scanqr.ui.movie.MovieFragment;
+import com.example.scanqr.ui.showMovie.MovieFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRoot = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        mRoot = inflater.inflate(R.layout.list_movie, container, false);
         init();
         setToolBar();
         dataSet();
@@ -49,12 +49,12 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
     private void dataSet() {
         mList = new ArrayList<>();
 
-        mList.add(new Movie(R.drawable.images));
-        mList.add(new Movie(R.drawable.index));
-        mList.add(new Movie(R.drawable.images));
-        mList.add(new Movie(R.drawable.index));
-        mList.add(new Movie(R.drawable.images));
-        mList.add(new Movie(R.drawable.index));
+        mList.add(new Movie(R.drawable.takhtgaz));
+        mList.add(new Movie(R.drawable.drakola));
+        mList.add(new Movie(R.drawable.takhtgaz));
+        mList.add(new Movie(R.drawable.drakola));
+        mList.add(new Movie(R.drawable.takhtgaz));
+        mList.add(new Movie(R.drawable.drakola));
 
     }
 
@@ -71,18 +71,18 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("movie");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.movie);
 
     }
 
     @Override
     public void replace(int id) {
-        MovieFragment draColaFragment = MovieFragment.newInstance(id);
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.frameLayout, draColaFragment);
-        ft.addToBackStack(null);
-        ft.commit();
+        MovieFragment movieFragment = MovieFragment.newInstance(id);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, movieFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override

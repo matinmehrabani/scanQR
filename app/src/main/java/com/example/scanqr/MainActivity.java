@@ -3,23 +3,17 @@ package com.example.scanqr;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.scanqr.ui.createQr.CreateQrFragment;
-import com.example.scanqr.ui.recyclerViewMovie.RecyclerViewMovieFragment;
+import com.example.scanqr.ui.listMovie.RecyclerViewMovieFragment;
 import com.example.scanqr.ui.scanQr.ScanFragment;
 import com.example.scanqr.ui.setting.SettingFragment;
-
-import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity implements MainInterface.view {
     private BottomNavigationView mBottomNavigationView;

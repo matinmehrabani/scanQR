@@ -59,10 +59,10 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     private void dataSet() {
 
         mArrayList = new ArrayList<>();
-        mArrayList.add(new Setting("بازه زمانی قفل صفحه", Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp, "60ثانیه"));
-        mArrayList.add(new Setting("روش احراز هویت", Setting.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, "الگو"));
-        mArrayList.add(new Setting("راهنمای برنامه", Setting.Two_TYPE, R.drawable.ic_home_black_24dp, null));
-        mArrayList.add(new Setting("پشتیبانی بانک ها", Setting.Two_TYPE, R.drawable.ic_call_black_24dp, null));
+        mArrayList.add(new Setting(R.string.title1, Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp, R.string.time));
+        mArrayList.add(new Setting(R.string.title2, Setting.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, R.string.Pattern));
+        mArrayList.add(new Setting(R.string.title3, Setting.Two_TYPE, R.drawable.ic_home_black_24dp, R.string.null1));
+        mArrayList.add(new Setting(R.string.title4, Setting.Two_TYPE, R.drawable.ic_call_black_24dp, R.string.null1));
 
     }
 
@@ -70,12 +70,12 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     public void change() {
         switch (mArrayList.get(1).getName()) {
 
-            case "الگو":
-                mArrayList.get(1).setName("password");
+            case R.string.Pattern:
+                mArrayList.get(1).setName(R.string.password);
                 break;
 
-            case "password":
-                mArrayList.get(1).setName("الگو");
+            case R.string.password:
+                mArrayList.get(1).setName(R.string.Pattern);
                 break;
         }
 
@@ -125,7 +125,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     public void toolBar() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("setting");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.setting);
     }
 
     @Override
@@ -133,28 +133,28 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        builder.setTitle("You want to change ?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.youWantChange);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (mId) {
                     case 0:
-                        mArrayList.get(0).setName("70 ثانیه");
+                        mArrayList.get(0).setName(R.string.time70);
                         mSettingAdapter.notifyDataSetChanged();
                         break;
                     case 1:
-                        mArrayList.get(0).setName("50 ثانیه");
+                        mArrayList.get(0).setName(R.string.time50);
                         mSettingAdapter.notifyDataSetChanged();
                         break;
                     case 2:
-                        mArrayList.get(0).setName("40 ثانیه");
+                        mArrayList.get(0).setName(R.string.time40);
                         mSettingAdapter.notifyDataSetChanged();
                 }
 
 
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

@@ -2,25 +2,25 @@ package com.example.scanqr.model;
 
 public class Setting {
 
-    private String mTitle;
+    private int mTitle;
     private int mType;
     private int mImage;
-    private String mName;
+    private int mName;
     public static final int ONE_TYPE = 1;
     public static final int Two_TYPE = 2;
 
-    public Setting(String title, int type, int image, String name) {
-        this.mTitle = title;
-        this.mType = type;
-        this.mImage = image;
-        this.mName = name;
+    public Setting(int title, int type, int image, int name) {
+        mTitle = title;
+        mType = type;
+        mImage = image;
+        mName = name;
     }
 
-    public void setName(String name) {
-        this.mName = name;
+    public void setName(int name) {
+        mName = name;
     }
 
-    public String getName() {
+    public int getName() {
         return mName;
     }
 
@@ -28,7 +28,7 @@ public class Setting {
         return mImage;
     }
 
-    public String getTitle() {
+    public int getTitle() {
         return mTitle;
     }
 
