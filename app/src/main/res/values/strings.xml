@@ -1,6 +1,43 @@
 <resources>
     <string name="app_name">ScanQR</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title1">بازه زمانی قفل صفحه</string>
+
+    <string name="title2">روش احراز هویت</string>
+
+    <string name="title3">راهنمای برنامه</string>
+
+    <string name="title4">پشتیبانی بانک ها</string>
+
+    <string name="time">60ثانیه</string>
+    
+    <string name="null1">null</string>
+
+    <string name="Pattern">الگو</string>
+
+    <string name="password">password</string>
+
+    <string name="time50">50 ثانیه</string>
+
+    <string name="time70">"70 ثانیه</string>
+
+    <string name="time40">40 ثانیه</string>
+
+    <string name="setting">setting</string>
+
+    <string name="youWantChange">You want to change ?</string>
+
+    <string name="yes">Yes</string>
+
+    <string name="no">No</string>
+
+    <string name="createQr">createQr</string>
+
+    <string name="movie">movie</string>
+
+    <string name="scan">scan</string>
+
+    <string name="drakola">drakola</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.scanqr.ui.recyclerViewMovie;
+package com.example.scanqr.ui.listMovie;
 
 public interface ListMovieInterface {
 

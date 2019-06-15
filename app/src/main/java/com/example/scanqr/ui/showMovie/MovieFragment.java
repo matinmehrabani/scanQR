@@ -1,4 +1,4 @@
-package com.example.scanqr.ui.movie;
+package com.example.scanqr.ui.showMovie;
 
 
 import android.media.MediaPlayer;
@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.scanqr.R;
@@ -31,13 +29,13 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
     private View mRoot;
     private String mMovie;
     private Toolbar mToolbar;
-    MovieFragment movieFragment;
+   private static final String mKey="name";
 
     public static MovieFragment newInstance(int id) {
         MovieFragment movie2Fragment = new MovieFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putInt("name", id);
+        bundle.putInt(mKey, id);
         movie2Fragment.setArguments(bundle);
         return movie2Fragment;
     }
@@ -47,7 +45,7 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRoot = inflater.inflate(R.layout.fragment_movie, container, false);
+        mRoot = inflater.inflate(R.layout.show_movie, container, false);
 
         init();
         toolBar();
@@ -64,12 +62,12 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
 
 
         try {
-            switch (getArguments().getInt("name")) {
+            switch (getArguments().getInt(mKey)) {
                 case 1:
-                    mMovie = "md";
+                    mMovie = "drakola";
                     break;
                 case 2:
-                    mMovie = "big_buck_bunny";
+                    mMovie = "takhtgaz";
             }
             int id = this.getRawResIdByName(mMovie);
             mVideoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName()
@@ -113,7 +111,7 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
         String packageName = this.getActivity().getPackageName();
 
         int resID = this.getResources().getIdentifier(resName, "raw", packageName);
-        Log.i("AndroidVideoView", "Res Name: " + resName + "==> Res ID = " + resID);
+
         return resID;
     }
 
@@ -137,14 +135,14 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("movie");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.movie);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
 
-            FragmentManager fm = getFragmentManager(); // or 'getSupportFragmentManager();'
+            FragmentManager fm = getFragmentManager();
             int count = fm.getBackStackEntryCount();
             for (int i = 0; i < count; ++i) {
                 fm.popBackStack();

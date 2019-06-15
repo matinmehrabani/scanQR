@@ -1,4 +1,4 @@
-package com.example.scanqr.ui.movie;
+package com.example.scanqr.ui.showMovie;
 
 public interface MovieInterface {
 

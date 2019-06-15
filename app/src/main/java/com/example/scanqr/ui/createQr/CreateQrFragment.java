@@ -57,7 +57,7 @@ public class CreateQrFragment extends Fragment implements CreateQrInterface.view
     private void toolBar() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("createQr");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.createQr);
     }
 
     @Override

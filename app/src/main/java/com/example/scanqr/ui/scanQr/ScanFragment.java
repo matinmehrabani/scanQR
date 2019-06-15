@@ -68,7 +68,7 @@ public class ScanFragment extends Fragment implements ZXingScannerView.ResultHan
     public void toolBar() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("scan");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.scan);
     }
 }
 
