@@ -13,12 +13,12 @@
 <android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:id="@+id/card1"
+    android:id="@+id/CardView_setting"
     >
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/image2"
+            android:id="@+id/ImageView_setting"
             android:src="@drawable/ic_local_movies_black_24dp"
             android:layout_gravity="left"
             android:layout_margin="10dp"

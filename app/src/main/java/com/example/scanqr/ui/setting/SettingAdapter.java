@@ -87,9 +87,9 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public clockViewHolder(@NonNull final View itemView) {
             super(itemView);
             mText = itemView.findViewById(R.id.text);
-            mImage = itemView.findViewById(R.id.image2);
+            mImage = itemView.findViewById(R.id.ImageView_setting);
             mTextClock = itemView.findViewById(R.id.text4);
-            mCardView = itemView.findViewById(R.id.card1);
+            mCardView = itemView.findViewById(R.id.CardView_setting);
             mCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

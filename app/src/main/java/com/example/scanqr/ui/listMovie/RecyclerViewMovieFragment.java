@@ -80,7 +80,7 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
         MovieFragment movieFragment = MovieFragment.newInstance(id);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, movieFragment);
+        fragmentTransaction.replace(R.id.frameLayout_main_replaceFragments, movieFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

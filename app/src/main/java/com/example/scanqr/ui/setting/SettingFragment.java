@@ -39,8 +39,9 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     private Toolbar mToolbar;
     private View mRoot;
     private AlertDialog mAlertDialog;
-    private CharSequence[] mValues = {" 70 ثانیه ", " 50 ثانیه", " 40 ثانیه "};
+    private CharSequence[] mValues = {" 70 ثانیه ", " 50 ثانیه", " 40 ثانیه ", " 60 ثانیه "};
     private int mId;
+    private int mCheckedItem;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +60,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     private void dataSet() {
 
         mArrayList = new ArrayList<>();
-        mArrayList.add(new Setting(R.string.title1, Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp, R.string.time));
+        mArrayList.add(new Setting(R.string.title1, Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp, R.string.time60));
         mArrayList.add(new Setting(R.string.title2, Setting.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, R.string.Pattern));
         mArrayList.add(new Setting(R.string.title3, Setting.Two_TYPE, R.drawable.ic_home_black_24dp, R.string.null1));
         mArrayList.add(new Setting(R.string.title4, Setting.Two_TYPE, R.drawable.ic_call_black_24dp, R.string.null1));
@@ -86,11 +87,21 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     public void init() {
         mRecyclerView = mRoot.findViewById(R.id.RecyclerView);
         mToolbar = mRoot.findViewById(R.id.Toolbar_setting);
+
     }
 
     @Override
     public void initListen(AlertDialog.Builder builder) {
-        builder.setSingleChoiceItems(mValues, -1, new DialogInterface.OnClickListener() {
+
+        switch (mArrayList.get(0).getName()){
+
+            case R.string.time70:mCheckedItem=0;break;
+            case R.string.time50:mCheckedItem=1;break;
+            case R.string.time40:mCheckedItem=2;break;
+            case R.string.time60: mCheckedItem=3;break;
+        }
+
+        builder.setSingleChoiceItems(mValues, mCheckedItem, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int item) {
 
@@ -108,6 +119,8 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
                         mId = 2;
 
                         break;
+                    case 3:
+                        mId = 3;
                 }
 
             }
@@ -149,6 +162,11 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
                     case 2:
                         mArrayList.get(0).setName(R.string.time40);
                         mSettingAdapter.notifyDataSetChanged();
+                        break;
+                    case 3:
+                        mArrayList.get(0).setName(R.string.time60);
+                        mSettingAdapter.notifyDataSetChanged();
+
                 }
 
 

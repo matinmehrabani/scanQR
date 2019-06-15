@@ -10,29 +10,22 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="670dp"
-        android:id="@+id/frameLayout">
+        android:id="@+id/frameLayout_main_replaceFragments">
 
     </FrameLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_above="@id/bottom_nav"
-        android:background="@drawable/shadow"
-        android:layout_marginBottom="10dp"
-        />
 
     <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationView_main_selectItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_nav"
-        android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/menu"
-        app:itemTextColor="@drawable/navigation"
-        app:itemIconTint="@drawable/navigation"
-        app:labelVisibilityMode="labeled"
+        android:background="?android:attr/windowBackground"
         android:theme="@style/Widget.BottomNavigationView"
+        app:itemIconTint="@drawable/navigation"
+        app:itemTextColor="@drawable/navigation"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu"
 
         />
 
