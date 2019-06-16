@@ -17,6 +17,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyVi
     private static List<Movie> mList;
     private static ListMovieInterface.view mReplace;
 
+
     public ListMovieAdapter(List<Movie> list, ListMovieInterface.view view) {
         mList = list;
         mReplace = view;
@@ -25,7 +26,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyVi
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new MyViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.modelmovie, viewGroup, false));
+        return new MyViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_modelmovie_listmovie, viewGroup, false));
     }
 
     @Override

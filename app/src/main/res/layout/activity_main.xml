@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="670dp"
@@ -14,19 +13,24 @@
 
     </FrameLayout>
 
+    
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationView_main_selectItem"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:textAlignment="center"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#AD1457"
+        app:tabIndicatorHeight="5dp"
+        app:tabIndicatorGravity="top"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#F57F17"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        android:theme="@style/Widget.BottomNavigationView"
-        app:itemIconTint="@drawable/navigation"
-        app:itemTextColor="@drawable/navigation"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/menu"
+        >
+        
+    </android.support.design.widget.TabLayout>
 
-        />
 
 </RelativeLayout>

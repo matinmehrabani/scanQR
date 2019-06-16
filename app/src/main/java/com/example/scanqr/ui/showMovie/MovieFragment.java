@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +20,7 @@ import com.example.scanqr.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieFragment extends Fragment implements MovieInterface.view {
+public class MovieFragment extends Fragment {
 
     private int mPosition = 0;
     private MediaController mMediaController;
@@ -45,9 +44,9 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRoot = inflater.inflate(R.layout.show_movie, container, false);
+        mRoot = inflater.inflate(R.layout.fragment_movie, container, false);
 
-        init();
+        initUi();
         toolBar();
 
         if (mMediaController == null) {
@@ -74,7 +73,7 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
                     + "/" + id));
 
         } catch (Exception e) {
-            Log.e("Error", e.getMessage());
+
             e.printStackTrace();
         }
 
@@ -121,12 +120,12 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
         super.onSaveInstanceState(savedInstanceState);
 
 
-        savedInstanceState.putInt("CurrentPosition", mVideoView.getCurrentPosition());
+        savedInstanceState.putInt(String.valueOf(R.string.movie_currentposition), mVideoView.getCurrentPosition());
         mVideoView.pause();
     }
 
-    @Override
-    public void init() {
+
+    public void initUi() {
         mVideoView = mRoot.findViewById(R.id.videoView2);
         mToolbar = mRoot.findViewById(R.id.Toolbar_movie);
     }
@@ -135,17 +134,17 @@ public class MovieFragment extends Fragment implements MovieInterface.view {
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.movie);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.listmovie_textsettitle);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
 
-            FragmentManager fm = getFragmentManager();
-            int count = fm.getBackStackEntryCount();
+            FragmentManager fragmentManager = getFragmentManager();
+            int count = fragmentManager.getBackStackEntryCount();
             for (int i = 0; i < count; ++i) {
-                fm.popBackStack();
+                fragmentManager.popBackStack();
             }
 
         }

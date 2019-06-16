@@ -21,7 +21,7 @@ import com.google.zxing.WriterException;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateQrFragment extends Fragment implements CreateQrInterface.view {
+public class CreateQrFragment extends Fragment  {
 
     private ImageView mImageView;
     private EditText mEditText;
@@ -33,8 +33,8 @@ public class CreateQrFragment extends Fragment implements CreateQrInterface.view
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRoot = inflater.inflate(R.layout.fragment_create_qr, container, false);
-        init();
+        mRoot = inflater.inflate(R.layout.fragment_createqr, container, false);
+        initUi();
         toolBar();
         initListen();
 
@@ -57,7 +57,7 @@ public class CreateQrFragment extends Fragment implements CreateQrInterface.view
     private void toolBar() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.createQr);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.createqr_textsettitle);
     }
 
     @Override
@@ -66,15 +66,15 @@ public class CreateQrFragment extends Fragment implements CreateQrInterface.view
 
     }
 
-    @Override
-    public void init() {
+
+    public void initUi() {
         mImageView = mRoot.findViewById(R.id.image);
         mEditText = mRoot.findViewById(R.id.edit);
         mToolbar = mRoot.findViewById(R.id.my_toolbar);
         mHelper = new Helper();
     }
 
-    @Override
+
     public void initListen() {
         mEditText.addTextChangedListener(new TextWatcher() {
             @Override

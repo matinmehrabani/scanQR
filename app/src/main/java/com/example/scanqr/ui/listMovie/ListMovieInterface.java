@@ -5,6 +5,5 @@ public interface ListMovieInterface {
     interface view {
         void replace(int id);
 
-        void init();
     }
 }

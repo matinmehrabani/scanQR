@@ -3,44 +3,44 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="title1">بازه زمانی قفل صفحه</string>
+    <string name="setting_onetitle">بازه زمانی قفل صفحه</string>
 
-    <string name="title2">روش احراز هویت</string>
+    <string name="setting_twotitle">روش احراز هویت</string>
 
-    <string name="title3">راهنمای برنامه</string>
+    <string name="setting_threetitle">راهنمای برنامه</string>
 
-    <string name="title4">پشتیبانی بانک ها</string>
+    <string name="setting_fourtitle">پشتیبانی بانک ها</string>
 
-    <string name="time">60ثانیه</string>
-    
-    <string name="null1">null</string>
+    <string name="setting_returnempty">null</string>
 
-    <string name="Pattern">الگو</string>
+    <string name="setting_pattern">الگو</string>
 
-    <string name="password">password</string>
+    <string name="setting_password">password</string>
 
-    <string name="time50">50 ثانیه</string>
+    <string name="setting_fiftytime">50 ثانیه</string>
 
-    <string name="time70">"70 ثانیه</string>
+    <string name="setting_seventytime">"70 ثانیه</string>
 
-    <string name="time40">40 ثانیه</string>
+    <string name="setting_fourtytime">40 ثانیه</string>
 
-    <string name="time60">60 ثانیه</string>
+    <string name="setting_Sixtytime">60 ثانیه</string>
 
-    <string name="setting">setting</string>
+    <string name="setting_textsettitle">setting</string>
 
-    <string name="youWantChange">You want to change ?</string>
+    <string name="setting_titleindialog">ایا مایل به تغییر هستید ؟</string>
 
-    <string name="yes">Yes</string>
+    <string name="setting_positiveanswer">بله</string>
 
-    <string name="no">No</string>
+    <string name="setting_negativeresponse">نه</string>
 
-    <string name="createQr">createQr</string>
+    <string name="createqr_textsettitle">createQr</string>
 
-    <string name="movie">movie</string>
+    <string name="listmovie_textsettitle">movie</string>
 
-    <string name="scan">scan</string>
+    <string name="scan_textsettitle">scan</string>
 
-    <string name="drakola">drakola</string>
+    <string name="movie_currentposition">CurrentPosition</string>
+
+<string name="createqr_textinedittext">text</string>
 
 </resources>

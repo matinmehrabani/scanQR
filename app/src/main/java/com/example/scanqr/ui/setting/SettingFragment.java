@@ -1,26 +1,17 @@
 package com.example.scanqr.ui.setting;
 
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.scanqr.R;
 import com.example.scanqr.model.Setting;
@@ -47,11 +38,11 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRoot = inflater.inflate(R.layout.fragment_settings, container, false);
+        mRoot = inflater.inflate(R.layout.fragment_setting, container, false);
 
         dataSet();
-        init();
-        recyclerView();
+        initUi();
+        initializeSettingRecyclerView();
         toolBar();
         return mRoot;
 
@@ -60,45 +51,45 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     private void dataSet() {
 
         mArrayList = new ArrayList<>();
-        mArrayList.add(new Setting(R.string.title1, Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp, R.string.time60));
-        mArrayList.add(new Setting(R.string.title2, Setting.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, R.string.Pattern));
-        mArrayList.add(new Setting(R.string.title3, Setting.Two_TYPE, R.drawable.ic_home_black_24dp, R.string.null1));
-        mArrayList.add(new Setting(R.string.title4, Setting.Two_TYPE, R.drawable.ic_call_black_24dp, R.string.null1));
+        mArrayList.add(new Setting(R.string.setting_onetitle, Setting.ONE_TYPE, R.drawable.ic_access_alarm_black_24dp, R.string.setting_Sixtytime));
+        mArrayList.add(new Setting(R.string.setting_twotitle, Setting.ONE_TYPE, R.drawable.ic_forward_10_black_24dp, R.string.setting_pattern));
+        mArrayList.add(new Setting(R.string.setting_threetitle, Setting.Two_TYPE, R.drawable.ic_home_black_24dp, R.string.setting_returnempty));
+        mArrayList.add(new Setting(R.string.setting_fourtitle, Setting.Two_TYPE, R.drawable.ic_call_black_24dp, R.string.setting_returnempty));
 
     }
 
     @Override
-    public void change() {
+    public void changeText() {
         switch (mArrayList.get(1).getName()) {
 
-            case R.string.Pattern:
-                mArrayList.get(1).setName(R.string.password);
+            case R.string.setting_pattern:
+                mArrayList.get(1).setName(R.string.setting_password);
                 break;
 
-            case R.string.password:
-                mArrayList.get(1).setName(R.string.Pattern);
+            case R.string.setting_password:
+                mArrayList.get(1).setName(R.string.setting_pattern);
                 break;
         }
 
         mSettingAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void init() {
+
+    public void initUi() {
         mRecyclerView = mRoot.findViewById(R.id.RecyclerView);
         mToolbar = mRoot.findViewById(R.id.Toolbar_setting);
 
     }
 
-    @Override
+
     public void initListen(AlertDialog.Builder builder) {
 
         switch (mArrayList.get(0).getName()){
 
-            case R.string.time70:mCheckedItem=0;break;
-            case R.string.time50:mCheckedItem=1;break;
-            case R.string.time40:mCheckedItem=2;break;
-            case R.string.time60: mCheckedItem=3;break;
+            case R.string.setting_seventytime:mCheckedItem=0;break;
+            case R.string.setting_fiftytime:mCheckedItem=1;break;
+            case R.string.setting_fourtytime:mCheckedItem=2;break;
+            case R.string.setting_Sixtytime: mCheckedItem=3;break;
         }
 
         builder.setSingleChoiceItems(mValues, mCheckedItem, new DialogInterface.OnClickListener() {
@@ -127,18 +118,18 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
         });
     }
 
-    @Override
-    public void recyclerView() {
+
+    public void initializeSettingRecyclerView() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mSettingAdapter = new SettingAdapter(mArrayList, SettingFragment.this);
         mRecyclerView.setAdapter(mSettingAdapter);
     }
 
-    @Override
+
     public void toolBar() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.setting);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.setting_textsettitle);
     }
 
     @Override
@@ -146,25 +137,25 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        builder.setTitle(R.string.youWantChange);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.setting_titleindialog);
+        builder.setPositiveButton(R.string.setting_positiveanswer, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (mId) {
                     case 0:
-                        mArrayList.get(0).setName(R.string.time70);
+                        mArrayList.get(0).setName(R.string.setting_seventytime);
                         mSettingAdapter.notifyDataSetChanged();
                         break;
                     case 1:
-                        mArrayList.get(0).setName(R.string.time50);
+                        mArrayList.get(0).setName(R.string.setting_fiftytime);
                         mSettingAdapter.notifyDataSetChanged();
                         break;
                     case 2:
-                        mArrayList.get(0).setName(R.string.time40);
+                        mArrayList.get(0).setName(R.string.setting_fourtytime);
                         mSettingAdapter.notifyDataSetChanged();
                         break;
                     case 3:
-                        mArrayList.get(0).setName(R.string.time60);
+                        mArrayList.get(0).setName(R.string.setting_Sixtytime);
                         mSettingAdapter.notifyDataSetChanged();
 
                 }
@@ -172,7 +163,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
 
             }
         });
-        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.setting_negativeresponse, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
