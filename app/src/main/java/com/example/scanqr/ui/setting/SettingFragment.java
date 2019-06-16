@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends Fragment implements SettingInterface.ui {
+public class SettingFragment extends Fragment implements SettingAdapter.showAndChange {
 
     private RecyclerView mRecyclerView;
     private SettingAdapter mSettingAdapter;
@@ -121,7 +121,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
 
     public void initializeSettingRecyclerView() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mSettingAdapter = new SettingAdapter(mArrayList, SettingFragment.this);
+        mSettingAdapter = new SettingAdapter(mArrayList, this);
         mRecyclerView.setAdapter(mSettingAdapter);
     }
 
@@ -144,22 +144,22 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
                 switch (mId) {
                     case 0:
                         mArrayList.get(0).setName(R.string.setting_seventytime);
-                        mSettingAdapter.notifyDataSetChanged();
+
                         break;
                     case 1:
                         mArrayList.get(0).setName(R.string.setting_fiftytime);
-                        mSettingAdapter.notifyDataSetChanged();
+
                         break;
                     case 2:
                         mArrayList.get(0).setName(R.string.setting_fourtytime);
-                        mSettingAdapter.notifyDataSetChanged();
+
                         break;
                     case 3:
                         mArrayList.get(0).setName(R.string.setting_Sixtytime);
-                        mSettingAdapter.notifyDataSetChanged();
+
 
                 }
-
+                mSettingAdapter.notifyDataSetChanged();
 
             }
         });

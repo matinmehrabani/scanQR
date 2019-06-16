@@ -18,14 +18,18 @@ import static com.example.scanqr.model.Setting.ONE_TYPE;
 import static com.example.scanqr.model.Setting.Two_TYPE;
 
 public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static List<Setting> mList;
-    private static SettingInterface.ui mShowAndChange;
+    private List<Setting> mList;
+    private showAndChange mShowAndChange;
 
+    interface showAndChange {
+        void changeText();
 
+        void alertDialog();
+    }
 
-    public SettingAdapter(List<Setting> list, SettingInterface.ui view) {
+    public SettingAdapter(List<Setting> list, showAndChange showAndChange) {
         mList = list;
-        mShowAndChange = view;
+        mShowAndChange = showAndChange;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         switch (i) {
             case ONE_TYPE:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_onemodel_setting, viewGroup, false);
-                return new clockViewHolder(view);
+                return new clockViewHolder(view, mList, mShowAndChange);
 
             case Two_TYPE:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_twomodel_setting, viewGroup, false);
@@ -86,7 +90,7 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private TextView mTextClock;
         private CardView mCardView;
 
-        public clockViewHolder(@NonNull final View itemView) {
+        public clockViewHolder(@NonNull final View itemView, final List<Setting> mList, final showAndChange mShowAndChange) {
             super(itemView);
             mText = itemView.findViewById(R.id.text);
             mImage = itemView.findViewById(R.id.ImageView_setting);

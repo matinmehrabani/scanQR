@@ -14,7 +14,7 @@ import com.example.scanqr.ui.setting.SettingFragment;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private TabLayout tabLayout;
+    private TabLayout mTabLayout;
 
     //TODO:(matin) remove additional codes
     //TODO:(matin) change activities to fragments
@@ -32,18 +32,18 @@ public class MainActivity extends AppCompatActivity  {
 
     public void initUi() {
 
-        tabLayout = findViewById(R.id.tab_layout);
+        mTabLayout = findViewById(R.id.tab_layout);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout_main_replaceFragments, new CreateQrFragment()).commit();
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.createqr_textsettitle).setIcon(R.drawable.ic_create_black_24dp));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.scan_textsettitle).setIcon(R.drawable.ic_settings_overscan_black_24dp));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.setting_textsettitle).setIcon(R.drawable.ic_settings_black_24dp));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.listmovie_textsettitle).setIcon(R.drawable.ic_local_movies_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.createqr_textsettitle).setIcon(R.drawable.ic_create_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.scan_textsettitle).setIcon(R.drawable.ic_settings_overscan_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.setting_textsettitle).setIcon(R.drawable.ic_settings_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.listmovie_textsettitle).setIcon(R.drawable.ic_local_movies_black_24dp));
     }
 
 
     public void initListen() {
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+        mTabLayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {

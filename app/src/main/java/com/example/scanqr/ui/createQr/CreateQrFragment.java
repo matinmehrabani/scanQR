@@ -25,7 +25,7 @@ public class CreateQrFragment extends Fragment  {
 
     private ImageView mImageView;
     private EditText mEditText;
-    private Helper mHelper;
+    private CreateQrHelper mHelper;
     private Toolbar mToolbar;
     private View mRoot;
 
@@ -71,7 +71,7 @@ public class CreateQrFragment extends Fragment  {
         mImageView = mRoot.findViewById(R.id.image);
         mEditText = mRoot.findViewById(R.id.edit);
         mToolbar = mRoot.findViewById(R.id.my_toolbar);
-        mHelper = new Helper();
+        mHelper = new CreateQrHelper();
     }
 
 

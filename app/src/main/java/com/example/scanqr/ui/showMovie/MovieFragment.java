@@ -63,10 +63,10 @@ public class MovieFragment extends Fragment {
         try {
             switch (getArguments().getInt(mKey)) {
                 case 1:
-                    mMovie = "drakola";
+                    mMovie = "movie_drakolamovie";
                     break;
                 case 2:
-                    mMovie = "takhtgaz";
+                    mMovie = "movie_takhtgazmovie";
             }
             int id = this.getRawResIdByName(mMovie);
             mVideoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName()
