@@ -11,15 +11,7 @@ public interface SettingInterface {
 
     interface ui {
 
-        void change();
-
-        void init();
-
-        void initListen(AlertDialog.Builder builder);
-
-        void recyclerView();
-
-        void toolBar();
+        void changeText();
 
         void alertDialog();
     }

@@ -1,22 +1,20 @@
 package com.example.scanqr;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 
 import com.example.scanqr.ui.createQr.CreateQrFragment;
-import com.example.scanqr.ui.listMovie.RecyclerViewMovieFragment;
+import com.example.scanqr.ui.listMovie.ListMovieFragment;
 import com.example.scanqr.ui.scanQr.ScanFragment;
 import com.example.scanqr.ui.setting.SettingFragment;
 
-public class MainActivity extends AppCompatActivity implements MainInterface.view {
-    private BottomNavigationView mBottomNavigationView;
+public class MainActivity extends AppCompatActivity  {
+
+    private TabLayout tabLayout;
 
     //TODO:(matin) remove additional codes
     //TODO:(matin) change activities to fragments
@@ -26,50 +24,63 @@ public class MainActivity extends AppCompatActivity implements MainInterface.vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+        initUi();
         initListen();
     }
 
 
-    @Override
-    public void init() {
-        mBottomNavigationView = findViewById(R.id.bottomNavigationView_main_selectItem);
 
+    public void initUi() {
+
+        tabLayout = findViewById(R.id.tab_layout);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout_main_replaceFragments, new CreateQrFragment()).commit();
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.createqr_textsettitle).setIcon(R.drawable.ic_create_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.scan_textsettitle).setIcon(R.drawable.ic_settings_overscan_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.setting_textsettitle).setIcon(R.drawable.ic_settings_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.listmovie_textsettitle).setIcon(R.drawable.ic_local_movies_black_24dp));
     }
 
-    @Override
+
     public void initListen() {
-        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint({"ResourceAsColor", "ResourceType"})
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.item_1:
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+
+                    case 0:
                         CreateQrFragment createQrFragment = new CreateQrFragment();
                         replace(createQrFragment);
                         break;
-                    case R.id.item_2:
-
+                    case 1:
                         ScanFragment scanFragment = new ScanFragment();
                         replace(scanFragment);
                         break;
-
-                    case R.id.item_3:
-                        SettingFragment settingsFragment = new SettingFragment();
+                    case 2: SettingFragment settingsFragment = new SettingFragment();
                         replace(settingsFragment);
                         break;
-                    case R.id.item_4:
-                        RecyclerViewMovieFragment recyclerViewFragment = new RecyclerViewMovieFragment();
+                    case 3:
+                        ListMovieFragment recyclerViewFragment = new ListMovieFragment();
                         replace(recyclerViewFragment);
                         break;
                 }
-                return true;
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
+
     }
 
-    @Override
+
+
     public void replace(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -21,6 +21,8 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static List<Setting> mList;
     private static SettingInterface.ui mShowAndChange;
 
+
+
     public SettingAdapter(List<Setting> list, SettingInterface.ui view) {
         mList = list;
         mShowAndChange = view;
@@ -41,11 +43,11 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         View view;
         switch (i) {
             case ONE_TYPE:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom1, viewGroup, false);
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_onemodel_setting, viewGroup, false);
                 return new clockViewHolder(view);
 
             case Two_TYPE:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom2, viewGroup, false);
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_twomodel_setting, viewGroup, false);
                 return new callAndHomeViewHolder(view);
         }
 
@@ -94,11 +96,11 @@ public class SettingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 @Override
                 public void onClick(View v) {
                     switch (mList.get(getAdapterPosition()).getTitle()) {
-                        case R.string.title1:
+                        case R.string.setting_onetitle:
                             mShowAndChange.alertDialog();
                             break;
-                        case R.string.title2:
-                            mShowAndChange.change();
+                        case R.string.setting_twotitle:
+                            mShowAndChange.changeText();
 
                     }
                 }

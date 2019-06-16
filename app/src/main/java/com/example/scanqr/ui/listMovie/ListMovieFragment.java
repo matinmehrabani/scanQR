@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecyclerViewMovieFragment extends Fragment implements ListMovieInterface.view {
+public class ListMovieFragment extends Fragment implements ListMovieInterface.view {
 
     private List<Movie> mList;
     private RecyclerView mRecyclerView;
@@ -35,18 +35,18 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRoot = inflater.inflate(R.layout.list_movie, container, false);
-        init();
+        mRoot = inflater.inflate(R.layout.fragment_listmovie, container, false);
+        initUi();
         setToolBar();
-        dataSet();
-        recyclerView();
+        dataSetListMovie();
+        initializeMovieRecyclerView();
 
         return mRoot;
 
 
     }
 
-    private void dataSet() {
+    private void dataSetListMovie() {
         mList = new ArrayList<>();
 
         mList.add(new Movie(R.drawable.takhtgaz));
@@ -58,11 +58,11 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
 
     }
 
-    private void recyclerView() {
+    private void initializeMovieRecyclerView() {
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
-        mListMovieAdapter = new ListMovieAdapter(mList, RecyclerViewMovieFragment.this);
+        mListMovieAdapter = new ListMovieAdapter(mList, ListMovieFragment.this);
         mRecyclerView.setAdapter(mListMovieAdapter);
 
     }
@@ -71,7 +71,7 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.movie);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.listmovie_textsettitle);
 
     }
 
@@ -85,8 +85,8 @@ public class RecyclerViewMovieFragment extends Fragment implements ListMovieInte
         fragmentTransaction.commit();
     }
 
-    @Override
-    public void init() {
+
+    public void initUi() {
         mToolbar = mRoot.findViewById(R.id.Toolbar_recycler);
         mRecyclerView = mRoot.findViewById(R.id.recyclerView);
     }

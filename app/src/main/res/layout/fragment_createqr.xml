@@ -29,7 +29,7 @@
            android:inputType="text"
            android:layout_centerHorizontal="true"
            android:layout_marginTop="70dp"
-           android:hint="Text"
+           android:hint="@string/createqr_textinedittext"
            />
 
 
