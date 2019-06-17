@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -21,6 +21,12 @@
         <item name="fontFamily"> @string/app_name</item>
         <item name="android:textSize">9sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert" >
+
+        <item name="android:layoutDirection" tools:ignore="NewApi">rtl</item>
     </style>
 
 </resources>

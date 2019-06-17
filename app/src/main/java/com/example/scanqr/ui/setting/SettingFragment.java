@@ -1,11 +1,15 @@
 package com.example.scanqr.ui.setting;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.drm.DrmRights;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -33,7 +37,6 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     private CharSequence[] mValues = {" 70 ثانیه ", " 50 ثانیه", " 40 ثانیه ", " 60 ثانیه "};
     private int mId;
     private int mCheckedItem;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -135,7 +138,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
     @Override
     public void alertDialog() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.AlertDialogCustom);
 
         builder.setTitle(R.string.setting_titleindialog);
         builder.setPositiveButton(R.string.setting_positiveanswer, new DialogInterface.OnClickListener() {
@@ -174,6 +177,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
         mAlertDialog.show();
 
     }
+
 }
 
 
