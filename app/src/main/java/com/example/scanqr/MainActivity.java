@@ -1,49 +1,58 @@
 package com.example.scanqr;
 
+import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TabHost;
 
 import com.example.scanqr.ui.createQr.CreateQrFragment;
 import com.example.scanqr.ui.listMovie.ListMovieFragment;
 import com.example.scanqr.ui.scanQr.ScanFragment;
 import com.example.scanqr.ui.setting.SettingFragment;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
+    private TabLayout mTabLayout;
 
     //TODO:(matin) remove additional codes
     //TODO:(matin) change activities to fragments
     //TODO:(matin) define initUiComponent and initUiListener
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initUi();
         initListen();
+
     }
 
 
-
+    @SuppressLint("ResourceType")
     public void initUi() {
 
-        tabLayout = findViewById(R.id.tab_layout);
+        mTabLayout = findViewById(R.id.tab_layout);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout_main_replaceFragments, new CreateQrFragment()).commit();
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.createqr_textsettitle).setIcon(R.drawable.ic_create_black_24dp));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.scan_textsettitle).setIcon(R.drawable.ic_settings_overscan_black_24dp));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.setting_textsettitle).setIcon(R.drawable.ic_settings_black_24dp));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.listmovie_textsettitle).setIcon(R.drawable.ic_local_movies_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.createqr_textsettitle).setIcon(R.drawable.ic_create_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.scan_textsettitle).setIcon(R.drawable.ic_settings_overscan_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.setting_textsettitle).setIcon(R.drawable.ic_settings_black_24dp));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.listmovie_textsettitle).setIcon(R.drawable.ic_local_movies_black_24dp));
+        mTabLayout.setTabIconTintResource(R.drawable.tablayout);
     }
 
 
     public void initListen() {
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+        mTabLayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
@@ -51,19 +60,25 @@ public class MainActivity extends AppCompatActivity  {
                     case 0:
                         CreateQrFragment createQrFragment = new CreateQrFragment();
                         replace(createQrFragment);
+
                         break;
                     case 1:
                         ScanFragment scanFragment = new ScanFragment();
                         replace(scanFragment);
+
                         break;
-                    case 2: SettingFragment settingsFragment = new SettingFragment();
+                    case 2:
+                        SettingFragment settingsFragment = new SettingFragment();
                         replace(settingsFragment);
+
                         break;
                     case 3:
                         ListMovieFragment recyclerViewFragment = new ListMovieFragment();
                         replace(recyclerViewFragment);
+
                         break;
                 }
+                mTabLayout.setTabIconTintResource(R.drawable.tablayout);
             }
 
             @Override
@@ -80,11 +95,11 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-
     public void replace(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout_main_replaceFragments, fragment);
         fragmentTransaction.commit();
     }
+
 }

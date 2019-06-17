@@ -13,15 +13,20 @@ import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.scanqr.R;
 import com.example.scanqr.model.Setting;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.icu.lang.UCharacter.EastAsianWidth.NEUTRAL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,7 +100,7 @@ public class SettingFragment extends Fragment implements SettingInterface.ui {
             case R.string.setting_Sixtytime: mCheckedItem=3;break;
         }
 
-        builder.setSingleChoiceItems(mValues, mCheckedItem, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(mValues,mCheckedItem, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int item) {
 
