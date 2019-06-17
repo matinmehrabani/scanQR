@@ -46,13 +46,16 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.setting_textsettitle).setIcon(R.drawable.ic_settings_black_24dp));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.listmovie_textsettitle).setIcon(R.drawable.ic_local_movies_black_24dp));
         mTabLayout.setTabIconTintResource(R.drawable.tablayout);
+
     }
 
 
     public void initListen() {
 
         mTabLayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+
             @SuppressLint("ResourceType")
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {

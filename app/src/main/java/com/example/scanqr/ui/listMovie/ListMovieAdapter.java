@@ -14,19 +14,26 @@ import java.util.List;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyViewHolder> {
 
-    private static List<Movie> mList;
-    private static ListMovieInterface.view mReplace;
+    private   List<Movie> mList;
 
+private listAdapter mListAdapter;
 
-    public ListMovieAdapter(List<Movie> list, ListMovieInterface.view view) {
+   public interface listAdapter{
+
+      void replaces(int id);
+}
+
+    public ListMovieAdapter(List<Movie> list,listAdapter ListAdapter) {
         mList = list;
-        mReplace = view;
+mListAdapter=ListAdapter;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new MyViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_modelmovie_listmovie, viewGroup, false));
+
+        View view=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_modelmovie_listmovie, viewGroup, false);
+        return new MyViewHolder(view,mList,mListAdapter);
     }
 
     @Override
@@ -43,21 +50,22 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView mImageView;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, final List<Movie> movieList,final listAdapter mListAdapter) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.imageView);
             mImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switch (mList.get(getAdapterPosition()).getImage()) {
+                    switch (movieList.get(getAdapterPosition()).getImage()) {
 
-                        case R.drawable.takhtgaz:
-                            mReplace.replace(1);
+                        case R.drawable.listmovie_takhtgazimage:
+                          mListAdapter.replaces(1);
+
                             break;
 
-                        case R.drawable.drakola:
+                        case R.drawable.listmovie_drakolaimage:
+                           mListAdapter.replaces(2);
 
-                            mReplace.replace(2);
                     }
                 }
             });

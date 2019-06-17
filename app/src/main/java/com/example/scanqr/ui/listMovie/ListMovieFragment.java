@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 
 import com.example.scanqr.R;
 import com.example.scanqr.model.Movie;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListMovieFragment extends Fragment implements ListMovieInterface.view {
+public class ListMovieFragment extends Fragment implements ListMovieAdapter.listAdapter {
 
     private List<Movie> mList;
     private RecyclerView mRecyclerView;
@@ -49,12 +50,12 @@ public class ListMovieFragment extends Fragment implements ListMovieInterface.vi
     private void dataSetListMovie() {
         mList = new ArrayList<>();
 
-        mList.add(new Movie(R.drawable.takhtgaz));
-        mList.add(new Movie(R.drawable.drakola));
-        mList.add(new Movie(R.drawable.takhtgaz));
-        mList.add(new Movie(R.drawable.drakola));
-        mList.add(new Movie(R.drawable.takhtgaz));
-        mList.add(new Movie(R.drawable.drakola));
+        mList.add(new Movie(R.drawable.listmovie_takhtgazimage));
+        mList.add(new Movie(R.drawable.listmovie_drakolaimage));
+        mList.add(new Movie(R.drawable.listmovie_takhtgazimage));
+        mList.add(new Movie(R.drawable.listmovie_drakolaimage));
+        mList.add(new Movie(R.drawable.listmovie_takhtgazimage));
+        mList.add(new Movie(R.drawable.listmovie_drakolaimage));
 
     }
 
@@ -62,7 +63,7 @@ public class ListMovieFragment extends Fragment implements ListMovieInterface.vi
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
-        mListMovieAdapter = new ListMovieAdapter(mList, ListMovieFragment.this);
+        mListMovieAdapter = new ListMovieAdapter(mList,this);
         mRecyclerView.setAdapter(mListMovieAdapter);
 
     }
@@ -75,19 +76,20 @@ public class ListMovieFragment extends Fragment implements ListMovieInterface.vi
 
     }
 
+
+    public void initUi() {
+        mToolbar = mRoot.findViewById(R.id.Toolbar_recycler);
+        mRecyclerView = mRoot.findViewById(R.id.recyclerView);
+    }
+
+
     @Override
-    public void replace(int id) {
+    public void replaces(int id) {
         MovieFragment movieFragment = MovieFragment.newInstance(id);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout_main_replaceFragments, movieFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
-
-
-    public void initUi() {
-        mToolbar = mRoot.findViewById(R.id.Toolbar_recycler);
-        mRecyclerView = mRoot.findViewById(R.id.recyclerView);
     }
 }
